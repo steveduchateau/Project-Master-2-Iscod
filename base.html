@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Qui suis-je ?{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Vos styles CSS personnalisés ici */
+        .espacement-vertical {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        #header_wrapper {
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .navbar-custom {
+            background-color: transparent;
+            border-color: #333;
+        }
+        .navbar-custom .navbar-nav > li > a {
+            color: #fff;
+            font-size: 20px;
+            padding: 15px 30px;
+        }
+        .navbar-custom .navbar-nav > li.active > a,
+        .navbar-custom .navbar-nav > li > a:hover {
+            background-color: gris; /* Fond transparent pour le lien actif et au survol */
+            border: none; /* Supprimer la bordure */
+            border-radius: 5px; /* Optionnel : ajouter un arrondi aux bords */
+        }
+        .navbar-custom .navbar-nav {
+            margin-top: 15px;
+        }
+        /* Styles pour la section principale avec l'image */
+        #head {
+            background-image: url("{{ url_for('static', filename='img/IMG_8027.png') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            font-size: 36px;
+            background-repeat: no-repeat;
+        }
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
+        }
+        .text-overlay h2,
+        .text-overlay p {
+            margin: 0;
+            padding: 0;
+        }
+        .text-overlay h2 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .text-overlay p {
+            font-size: 24px;
+        }
+        /* Styles pour la section "Qui suis-je ?" */
+        #aboutUs {
+            background-color: #1a4685;
+            color: #fff;
+            padding: 50px 0;
+            margin-top: 0;
+        }
+        #aboutUs .inner_wrapper {
+            text-align: center;
+        }
+        #aboutUs blockquote {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        #aboutUs .inner_section {
+            margin-top: 30px;
+        }
+        #aboutUs .inner_section h3 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        #aboutUs .inner_section p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        #aboutUs .icons {
+            margin-top: 30px;
+        }
+        #aboutUs .icons i {
+            font-size: 36px;
+            margin-right: 20px;
+            color: #fff;
+        }
+        /* Styles pour la section "Expérience" */
+        #experience {
+            background-color: #fff; /* Couleur de fond */
+            padding: 50px 0; /* Espacement intérieur */
+        }
+        #experience .timeline {
+            position: relative;
+            margin-top: 50px; /* Espacement du haut */
+        }
+        #experience .timeline .date-title {
+            position: relative;
+            margin-bottom: 50px; /* Espacement entre les dates */
+        }
+        #experience .timeline .date-title span {
+            display: block;
+            color: #333; /* Couleur du texte des dates */
+            font-size: 24px; /* Taille du texte des dates */
+            font-weight: bold; /* Gras pour les dates */
+        }
+        #experience .timeline .row {
+            margin-bottom: 50px; /* Espacement entre les éléments */
+        }
+        #experience .timeline .news-item {
+            position: relative;
+            padding-left: 30px; /* Espacement à gauche */
+            padding-right: 30px; /* Espacement à droite */
+            margin-bottom: 30px; /* Espacement en bas */
+        }
+        #experience .timeline .news-item .news-content {
+            position: relative;
+            background-color: #f9f9f9; /* Couleur de fond du contenu */
+            padding: 20px; /* Espacement intérieur du contenu */
+            border-radius: 10px; /* Bord arrondi du contenu */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ombre légère */
+        }
+        #experience .timeline .news-item .news-content .date {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #1a4685; /* Couleur de fond de la date */
+            color: #fff; /* Couleur du texte de la date */
+            padding: 10px 20px; /* Espacement intérieur de la date */
+            border-radius: 5px; /* Bord arrondi de la date */
+        }
+        #experience .timeline .news-item .news-content h2.news-title {
+            font-size: 24px; /* Taille du titre */
+            margin-top: 15px; /* Espacement du haut */
+        }
+        #experience .timeline .news-item .news-content span {
+            display: block;
+            font-size: 18px; /* Taille du sous-titre */
+            margin-bottom: 10px; /* Espacement en bas */
+        }
+        #experience .timeline .news-item .news-content p {
+            font-size: 16px; /* Taille du texte */
+            line-height: 1.6; /* Espacement des lignes */
+            margin-bottom: 0; /* Supprimer l'espacement en bas */
+        }
+    </style>
+</head>
+<body>
+    <div id="header_wrapper">
+        <div class="container">
+            <div class="header_box">
+                <nav class="navbar navbar-custom" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div id="main-nav" class="collapse navbar-collapse navStyle">
+                        <ul class="nav navbar-nav" id="mainNav">
+                            <li class="{% if active_page == 'index' %}active{% endif %}">
+                                <a href="#head" class="scroll-link">Accueil</a>
+                            </li>
+                            <li class="{% if active_page == 'qui_suis_je' %}active{% endif %}">
+                                <a href="#aboutUs" class="scroll-link">Qui suis-je ?</a>
+                            </li>
+                            <li class="{% if active_page == 'competences' %}active{% endif %}">
+                                <a href="{{ url_for('competences') }}" class="scroll-link">Compétences</a>
+                            </li>
+                            <li class="{% if active_page == 'portfolio' %}active{% endif %}">
+                                <a href="{{ url_for('portfolio') }}" class="scroll-link">Portfolio</a>
+                            </li>
+                            <li class="{% if active_page == 'experience' %}active{% endif %}">
+                                <a href="{{ url_for('experience') }}" class="scroll-link">Expérience</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section principale avec l'image d'accueil -->
+    <header id="head">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-overlay">
+                    <h2 style="color: #000000;">Steve DUCHATEAU<br></h2>
+                    <h2 style="color: #000000;">Assistant de projet / Data analyst</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section "Qui suis-je ?" -->
+<section id="aboutUs" class="aboutUs-container fadeInLeft wow animated" style="visibility: visible; animation-name: fadeInLeft;">
+    <div class="container">
+        <h2>Qui suis-je ?</h2>
+        <blockquote>
+            Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie.
+            <cite>Confucius</cite>
+        </blockquote>
+        <div class="inner_section">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Une Passion</h3>
+                    <p>J'ai débuté l'informatique cette année avec une mission particulièrement chronophage, exigeant beaucoup de temps et d'efforts. Cette mission consistait à automatiser un processus manuel complexe, et j'ai décidé de relever ce défi en utilisant Python. En m'immergeant dans les détails techniques et en pratiquant intensivement, j'ai découvert une véritable passion pour la programmation et l'automatisation.</p>
+                    <p>Pour approfondir mes connaissances et me spécialiser davantage, je me suis inscrit au mastère Expert en Ingénierie Logicielle à l'ISCOD. Ce programme et mes missions m'ont permis de consolider mes compétences en automatisation, notamment dans la gestion des données. J'ai travaillé sur divers projets, explorant des technologies comme les scripts d'automatisation, les API, et l'intégration de données, ce qui m'a permis de perfectionner mes compétences techniques et de résoudre des problèmes complexes de manière efficace.</p>
+                    <p>Je continue à solidifier mes connaissances en Python, HTML5, CSS3 et parfois je m'exerce sur des sujets liés à JavaScript. En plus de mes études formelles, je consacre également du temps à des projets personnels et à la lecture de la documentation technique, ce qui me permet de rester à jour avec les dernières tendances technologiques.</p>
+                    <p>Je suis motivé, curieux et toujours prêt à consolider mes compétences et à suivre les dernières innovations du secteur. Mon ambition est de devenir un expert reconnu dans le domaine de l'automatisation et de la gestion des données, en apportant des solutions innovantes et efficaces aux défis technologiques actuels.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        
+        <!-- Section "Expérience" avec timeline -->
+        <section id="experience">
+            <div class="container">
+                <div class="timeline">
+                    <div class="date-title">
+                        <span>2016 - 2024</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 news-item">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>Février</p> 
+                                </div>
+                                <h2 class="news-title"><img src="" alt="">ISCOD</h2> 
+                                <span>Mastére 2 Expert Ingénieurie Logiciel</span>
+                                <p>Etudiant au sein de l'ISCOD de septembre 2023 a Novembre 2024 – Franconvile (95)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 news-item right">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>2022</p> 
+                                </div>
+                                <h2 class="news-title"><img src="" alt="">ENSUP</h2> 
+                                <span>Mastére Management et Stratégie d'Entreprise</span>
+                                <p>Obtention du diplôme Mastére Management et Stratégie d'Entreprise - Cergy (95)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">    
+                        <div class="col-sm-6 news-item">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>2021</p> 
+                                </div>
+                                <h2 class="news-title"><img src="" alt="">IFCP</h2> 
+                                <span>Licence Gestion des Organisations</span>
+                                <p>Obtention du diplôme licence gestion des organisations de septembre 2021 a Juillet 2022 – Margency (95) </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 news-item right">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>2019</p> 
+                                </div>
+                                <h2 class="news-title"><img src="" alt="">Bury SUP</h2> 
+                                <span>BTS Commerce International</span>
+                                <p>Obtention du diplôme BTS Commerce International à Bury SUP de septembre 2017 a Juillet 2019 – Margency (95)</p>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+        
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
+        <!-- Script pour le scroll fluide -->
+        <script>
+            $(document).ready(function() {
+                $(".scroll-link").click(function(event){
+                    event.preventDefault();
+                    var target = $(this).attr("href"); 
+                    $('html, body').animate({ scrollTop: $(target).offset().top - $("#header_wrapper").outerHeight() + 50}, 800);
+                });
+                
+                $(window).scroll(function() {
+                    var scrollDistance = $(window).scrollTop(); 
+                    
+                    $('.section').each(function(i) {
+                        if ($(this).position().top <= scrollDistance) {
+                            $('.navbar-nav a.active').removeClass('active');
+                            $('.navbar-nav li').eq(i).find('a').addClass('active');
+                        }
+                    });
+                }).scroll();
+            });
+        </script>
+        
+        </body>
+        </html>
+        

@@ -1,0 +1,10 @@
+/* Réduire la marge en bas du header */
+header {
+    margin-bottom: 0;
+}
+
+/* Réduire la marge en haut de la section "Qui suis-je ?" */
+#aboutUs {
+    margin-top: 0;
+    padding-top: 0; /* Optionnel : ajuster le padding si nécessaire */
+}
