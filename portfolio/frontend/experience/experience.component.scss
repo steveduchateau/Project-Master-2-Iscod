@@ -1,0 +1,135 @@
+/* Variables */
+$primary-color: #113e7e;
+$secondary-color: #60037c;
+$light-gray: #f3f3f3;
+$dark-gray: #444;
+$timeline-color: #770050;
+
+/* Titre h2 */
+h2 {
+    font-size: 20px; /* Taille moyenne uniforme pour les titres */
+    font-weight: bold; /* Poids de la police */
+    color: $primary-color; /* Couleur du texte */
+    margin: 15px 0; /* Marge au-dessus et en dessous */
+    padding: 10px; /* Espacement interne */
+    border: 1px solid $primary-color; /* Bordure colorée */
+    border-radius: 6px; /* Bordures arrondies */
+    display: flex; /* Utiliser flexbox pour aligner le texte et l'image */
+    align-items: center; /* Alignement vertical */
+    justify-content: center; /* Centrage du texte */
+    gap: 10px; /* Espacement entre l'image et le texte */
+    background-color: $light-gray; /* Fond léger */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée douce */
+}
+
+h2 img {
+    width: 40px; /* Largeur uniforme pour les images */
+    height: 40px; /* Hauteur uniforme pour les images */
+    border-radius: 50%; /* Bordure arrondie pour l'image */
+    margin-right: 10px; /* Espacement à droite de l'image */
+}
+
+/* Section "Expérience" */
+#experience {
+    background-color: $light-gray;
+    padding: 80px 0;
+    text-align: center;
+
+    .container {
+        position: relative;
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+
+            .nav-btn {
+                background-color: $primary-color;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin: 0 10px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+                &.active {
+                    background-color: darken($primary-color, 10%);
+                }
+                &:hover {
+                    background-color: darken($primary-color, 15%);
+                }
+            }
+        }
+
+        .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column; /* Frise verticale */
+            align-items: center; /* Centrage des éléments horizontalement */
+            padding: 20px;
+            margin-top: 50px;
+
+            .line {
+                position: absolute;
+                width: 4px;
+                background-color: $timeline-color;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .item {
+                position: relative;
+                width: calc(50% - 20px); /* Largeur des conteneurs */
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+                margin-bottom: 40px; /* Espacement entre les éléments */
+                display: flex; /* Utilisation de flexbox pour aligner les éléments */
+                align-items: center; /* Centrage vertical */
+
+                img {
+                    width: 80px; /* Taille des miniatures d'images */
+                    height: auto; /* Hauteur automatique */
+                    border-radius: 50%; /* Bordure arrondie pour les miniatures */
+                    margin-right: 20px; /* Espacement à droite des miniatures */
+                }
+
+                &.left {
+                    align-self: flex-start; /* Alignement à gauche */
+                    text-align: right;
+                }
+
+                &.right {
+                    align-self: flex-end; /* Alignement à droite */
+                    text-align: left;
+                }
+
+                &:hover {
+                    transform: translateY(-5px);
+                }
+
+                .content {
+                    text-align: left;
+
+                    p {
+                        font-size: 16px;
+                        color: $dark-gray;
+                        line-height: 1.6;
+                        margin-bottom: 0;
+                    }
+
+                    span {
+                        display: block;
+                        font-size: 16px;
+                        color: $secondary-color;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

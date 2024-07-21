@@ -1,0 +1,17 @@
+<div id="projects" class="projects-container">
+  <!-- Projects Section -->
+  <div class="projects-category">
+    <h2>Projets</h2>
+    <div class="projects-grid">
+      <div class="project" *ngFor="let project of projets" [id]="'project-' + project.id">
+        <img [src]="'assets/img/' + project.nom.toLowerCase().replace(' ', '') + '.png'" alt="{{ project.nom }}" class="project-icon">
+        
+        <h3>{{ project.nom }}</h3>
+        <p>{{ project.description }}</p>
+        <button mat-raised-button color="primary" (click)="openDetailsDialog(project)">
+          Voir les détails
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

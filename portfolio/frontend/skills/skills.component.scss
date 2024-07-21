@@ -1,0 +1,85 @@
+.skills-container {
+  padding: 20px;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .skills-category {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); // Deux colonnes
+      gap: 20px;
+      // Pour les écrans plus petits, passez à une seule colonne
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skill {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .skill-icon {
+        width: 80px; // Augmenté pour meilleure visibilité
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto;
+        border: 2px solid #007bff;
+      }
+
+      h3 {
+        font-size: 1.4rem; // Augmenté pour meilleure visibilité
+        color: #333;
+        margin: 10px 0;
+      }
+
+      ul {
+        padding: 0;
+        list-style-type: none;
+        margin: 0;
+
+        li {
+          margin: 5px 0;
+          color: #444;
+          font-size: 14px;
+
+          .font-weight-bold {
+            font-weight: bold;
+          }
+        }
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 30px;
+        padding: 10px 20px; // Augmenté pour bouton plus grand
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: none;
+        width: 100%;
+
+        &:hover {
+          background-color: #0056b3;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
