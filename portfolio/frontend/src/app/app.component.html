@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<!-- Affiche l'ensemble de la page d'accueil avec toutes ses sections -->
+<div *ngIf="currentRoute === '/accueil'">
+  <app-accueil id="head"></app-accueil>
+  <app-quisuisje id="aboutus"></app-quisuisje>
+  <app-experience id="experience"></app-experience>
+  <app-skills id="skills"></app-skills>
+  <app-projets id="projects"></app-projets>
+  <app-contact id="contact"></app-contact>
+</div>
+
+<!-- Router outlet pour charger le contenu dynamique des autres pages (détails des projets) -->
+<router-outlet *ngIf="currentRoute !== '/accueil'"></router-outlet>
+
+<app-footer></app-footer>

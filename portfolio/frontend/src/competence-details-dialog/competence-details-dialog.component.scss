@@ -1,0 +1,171 @@
+// Style pour le conteneur de la boîte de dialogue
+::ng-deep mat-dialog-container {
+  width: 90vw !important; // Largeur de la boîte de dialogue à 90% de la largeur de la vue
+  height: 90vh !important; // Hauteur de la boîte de dialogue à 90% de la hauteur de la vue
+  max-width: 90vw !important; // Largeur maximale à 90% de la largeur de la vue
+  max-height: 90vh !important; // Hauteur maximale à 90% de la hauteur de la vue
+  margin: 0 auto !important; // Centrer la boîte de dialogue horizontalement
+  padding: 0 !important; // Supprimer les marges internes pour maximiser l'espace
+  overflow: hidden !important; // Masquer tout débordement éventuel
+  position: fixed !important; // Position fixe pour occuper tout l'espace disponible
+  top: 5vh !important; // Ajouter un espace au-dessus
+  left: 5vw !important; // Ajouter un espace à gauche
+}
+
+// Style pour le contenu de la boîte de dialogue
+::ng-deep mat-dialog-content {
+  padding: 30px !important; // Espacement intérieur autour du contenu
+  font-family: Arial, sans-serif !important; // Police de caractères
+  width: 100% !important; // Prendre toute la largeur disponible
+  height: auto !important; // Hauteur ajustée automatiquement
+  max-width: 100% !important; // Largeur maximale ajustée
+  max-height: calc(90vh - 60px) !important; // Hauteur maximale ajustée (en tenant compte du padding)
+  overflow-y: auto !important; // Permet le défilement vertical si le contenu dépasse
+  box-sizing: border-box !important; // Inclure le padding dans les dimensions
+}
+
+// Style pour les sections de contenu
+.content-section {
+  margin-bottom: 20px; // Espacement inférieur entre les sections
+  padding: 15px; // Espacement intérieur
+
+  // Style pour les titres principaux
+  h2 {
+    font-size: 22px; // Taille du titre principal
+    margin-bottom: 10px; // Espacement inférieur
+    color: #333; // Couleur du texte
+    font-weight: 700; // Poids de la police
+  }
+
+  // Style pour les sous-titres
+  h3 {
+    font-size: 18px; // Taille des sous-titres
+    margin-bottom: 10px; // Espacement inférieur
+    color: #555; // Couleur du texte légèrement plus claire
+    font-weight: 600; // Poids de la police
+  }
+
+  // Style pour les sous-sous-titres
+  h4 {
+    font-size: 16px; // Taille des sous-sous-titres
+    margin-bottom: 10px; // Espacement inférieur
+    color: #666; // Couleur du texte encore plus claire
+    font-weight: 600; // Poids de la police
+  }
+
+  // Style pour les listes
+  ul {
+    list-style-type: disc; // Type de puces pour les listes
+    margin: 0; // Supprimer les marges externes
+    padding-left: 20px; // Espacement à gauche pour les puces
+    line-height: 1.6; // Espacement entre les lignes
+
+    // Style pour les éléments de liste
+    li {
+      font-size: 14px; // Taille de la police des éléments de liste
+      margin-bottom: 10px; // Espacement inférieur
+
+      // Style pour le texte en gras dans les listes
+      span.font-weight-bold {
+        font-weight: bold; // Poids de la police en gras
+      }
+    }
+  }
+}
+
+// Style pour la liste des anecdotes
+.anecdote-list {
+  margin: 0; // Supprimer les marges externes
+  padding: 0; // Supprimer les marges internes
+
+  // Style pour chaque élément d'anecdote
+  .anecdote-item {
+    margin-bottom: 20px; // Espacement inférieur entre les anecdotes
+    padding: 15px; // Espacement intérieur
+    border-bottom: 1px solid #ddd; // Bordure inférieure légère
+    background-color: #f9f9f9; // Couleur de fond légère
+    border-radius: 8px; // Coins arrondis
+
+    // Style pour le titre des anecdotes
+    h5 {
+      font-size: 16px; // Taille du titre des anecdotes
+      font-weight: 600; // Poids de la police
+      margin: 0 0 5px 0; // Espacement inférieur
+      color: #444; // Couleur du texte
+    }
+
+    // Style pour le texte des anecdotes
+    p {
+      font-size: 14px; // Taille du texte
+      margin: 0 0 10px 0; // Espacement inférieur
+
+      // Style pour le texte en gras
+      strong {
+        font-weight: bold; // Poids de la police en gras
+      }
+    }
+
+    // Style pour les liens dans les anecdotes
+    a {
+      color: #007bff; // Couleur du lien
+      text-decoration: none; // Pas de soulignement
+      font-size: 14px; // Taille de la police
+
+      // Style au survol du lien
+      &:hover {
+        text-decoration: underline; // Soulignement au survol
+      }
+    }
+  }
+}
+
+// Style pour les informations supplémentaires
+.additional-info {
+  // Style pour les sous-titres des informations supplémentaires
+  h3 {
+    font-size: 18px; // Taille des sous-titres
+    margin-bottom: 10px; // Espacement inférieur
+    color: #333; // Couleur du texte
+    font-weight: 600; // Poids de la police
+  }
+
+  // Style pour les listes dans les informations supplémentaires
+  ul {
+    list-style-type: disc; // Type de puces pour les listes
+    margin: 0; // Supprimer les marges externes
+    padding-left: 20px; // Espacement à gauche pour les puces
+    line-height: 1.6; // Espacement entre les lignes
+
+    // Style pour les éléments de liste
+    li {
+      font-size: 14px; // Taille de la police des éléments de liste
+      margin-bottom: 10px; // Espacement inférieur
+
+      // Style pour le texte en gras dans les listes
+      span.font-weight-bold {
+        font-weight: bold; // Poids de la police en gras
+      }
+    }
+  }
+}
+
+// Style pour les actions de la boîte de dialogue
+mat-dialog-actions {
+  padding: 20px !important; // Espacement intérieur
+  text-align: right !important; // Alignement à droite des boutons
+
+  // Style pour le bouton
+  button {
+    background-color: #007bff !important; // Couleur de fond du bouton
+    color: #fff !important; // Couleur du texte du bouton
+    border-radius: 5px !important; // Coins arrondis du bouton
+    padding: 10px 20px !important; // Espacement intérieur du bouton
+    font-size: 14px !important; // Taille de la police du bouton
+    cursor: pointer !important; // Curseur de la souris en forme de main
+
+    // Style au survol du bouton
+    &:hover {
+      background-color: #0056b3 !important; // Couleur de fond du bouton au survol
+    }
+  }
+}

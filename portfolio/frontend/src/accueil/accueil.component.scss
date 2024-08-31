@@ -1,0 +1,66 @@
+/* Styles pour la section héroïne de la page d'accueil */
+
+/* Section principale de l'arrière-plan */
+.hero-section {
+  background-image: url('/assets/img/IMG_8027.png.jpeg'); /* Image de fond de la section */
+  background-size: cover; /* Ajuste l'image pour couvrir toute la section */
+  background-position: center; /* Centre l'image dans la section */
+  height: 100vh; /* Hauteur de la section égale à la hauteur de la fenêtre du navigateur */
+  display: flex; /* Utilise Flexbox pour l'alignement des éléments */
+  align-items: center; /* Aligne les éléments au centre verticalement */
+  justify-content: center; /* Aligne les éléments au centre horizontalement */
+  background-repeat: no-repeat; /* Évite que l'image se répète */
+  position: relative; /* Permet aux éléments positionnés absolument à l'intérieur de se positionner par rapport à cette section */
+}
+
+/* Superposition de texte pour le centrage sur l'arrière-plan */
+.text-overlay {
+  position: absolute; /* Positionne la superposition de texte absolument par rapport à la section héroïne */
+  width: 100%; /* Largeur totale de la section héroïne */
+  height: 100%; /* Hauteur totale de la section héroïne */
+  display: flex; /* Utilise Flexbox pour le centrage du contenu */
+  align-items: center; /* Centre le texte verticalement */
+  justify-content: center; /* Centre le texte horizontalement */
+}
+
+/* Conteneur du texte */
+.text-content {
+  display: flex; /* Utilise Flexbox pour organiser les éléments internes */
+  flex-direction: column; /* Dispose les éléments en colonne (verticalement) */
+  align-items: center; /* Centre les éléments horizontalement */
+  text-align: center; /* Centre le texte à l'intérieur du conteneur */
+  padding: 20px; /* Ajoute de l'espace autour du texte pour l'intérieur du cadre */
+  border: 3px solid #000; /* Bordure noire autour du texte */
+  background-color: rgba(0, 0, 0, 0.7); /* Arrière-plan noir semi-transparent pour un meilleur contraste */
+  border-radius: 10px; /* Arrondit les coins du cadre */
+}
+
+/* Style pour les titres */
+.main-title,
+.subtitle {
+  margin: 0; /* Supprime les marges par défaut */
+  color: #ffffff; /* Couleur du texte en blanc pour contraster avec l'arrière-plan */
+  white-space: nowrap; /* Empêche le texte de passer à la ligne suivante */
+}
+
+/* Style spécifique pour le titre principal */
+.main-title {
+  font-size: 36px; /* Taille de police pour le titre principal */
+  font-weight: bold; /* Rend le texte en gras */
+}
+
+/* Style spécifique pour le sous-titre */
+.subtitle {
+  font-size: 24px; /* Taille de police pour le sous-titre */
+}
+
+/* Styles responsifs pour les écrans plus petits (tablettes et téléphones) */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 24px; /* Réduit la taille de police du titre principal sur les écrans plus petits */
+  }
+
+  .subtitle {
+    font-size: 18px; /* Réduit la taille de police du sous-titre sur les écrans plus petits */
+  }
+}

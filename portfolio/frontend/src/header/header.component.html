@@ -1,0 +1,65 @@
+<nav class="navbar">
+  <ul id="mainNav">
+    <div class="nav-items-container">
+      
+      <!-- Lien vers la section Accueil de la page -->
+      <li class="nav-item">
+        <a [routerLink]="['/']" class="nav-link" (click)="scrollToSection('head')">Accueil</a>
+      </li>
+
+      <!-- Lien vers la section Qui suis-je ? -->
+      <li class="nav-item">
+        <a [routerLink]="['/']" class="nav-link" (click)="scrollToSection('aboutus')">Qui suis-je ?</a>
+      </li>
+
+      <!-- Lien vers la section Expérience -->
+      <li class="nav-item">
+        <a [routerLink]="['/']" class="nav-link" (click)="scrollToSection('experience')">Expérience</a>
+      </li>
+      
+      <!-- Menu déroulant pour les Compétences -->
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Compétences</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a [routerLink]="['/']" class="dropdown-item" (click)="scrollToSection('softSkills')">Soft Skills</a>
+          </li>
+          <li>
+            <a [routerLink]="['/']" class="dropdown-item" (click)="scrollToSection('hardSkills')">Hard Skills</a>
+          </li>
+        </ul>
+      </li>
+      
+      <!-- Menu déroulant pour les Projets -->
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" (click)="scrollToSection('projects')">Projets</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a [routerLink]="['/']" class="dropdown-item" (click)="scrollToSection('projects')">Tous les Projets</a>
+          </li>
+          <li *ngFor="let projectId of projects">
+            <a [routerLink]="['/projets', projectId]" class="dropdown-item">Projet {{ projectId }}</a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Lien vers la section Contact -->
+      <li class="nav-item">
+        <a [routerLink]="['/']" class="nav-link" (click)="scrollToSection('contact')">Contact</a>
+      </li>
+    </div>
+
+    <!-- Affichage du nom avec icônes GitHub et LinkedIn -->
+    <li class="nav-item name-display">
+      Steve Duchateau
+      <!-- Icône GitHub -->
+      <a href="https://github.com/steveduchateau" target="_blank" class="social-icon">
+        <i class="fab fa-github"></i>
+      </a>
+      <!-- Icône LinkedIn -->
+      <a href="https://www.linkedin.com/in/steve-duchateau-3268081b5/" target="_blank" class="social-icon">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  </ul>
+</nav>

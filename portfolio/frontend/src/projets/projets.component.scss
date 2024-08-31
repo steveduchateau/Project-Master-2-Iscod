@@ -1,0 +1,96 @@
+/* Conteneur principal pour la section des projets */
+.projects-container {
+  padding: 30px; /* Espacement interne autour du contenu */
+  background-color: #f4f4f4; /* Couleur de fond légèrement plus chaude pour délimiter la section */
+}
+
+/* Section contenant les projets avec une mise en forme propre */
+.projects-category {
+  max-width: 1200px; /* Largeur maximale pour le conteneur */
+  margin: 0 auto; /* Centre le conteneur horizontalement */
+  padding: 20px; /* Espacement interne autour du contenu */
+  background: #ffffff; /* Fond blanc pour faire ressortir les projets */
+  border-radius: 12px; /* Coins arrondis pour un effet moderne */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Ombre portée pour un effet d'élévation léger */
+}
+
+/* Style pour les titres de la section des projets */
+h2 {
+  text-align: center; /* Centre le texte horizontalement */
+  margin-bottom: 30px; /* Espacement sous le titre */
+  color: #2c3e50; /* Couleur du texte plus sombre pour plus de contraste */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Typographie moderne */
+  font-size: 2em; /* Taille de police plus grande pour le titre */
+  font-weight: 600; /* Poids de la police pour le titre */
+}
+
+/* Grille pour la disposition des projets */
+.projects-grid {
+  display: grid; /* Utilisation de Grid Layout */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colonne adaptative avec taille minimale */
+  gap: 20px; /* Espacement entre les éléments de la grille */
+}
+
+/* Style pour chaque élément de projet */
+.project {
+  background: #ffffff; /* Fond blanc pour chaque élément de projet */
+  border-radius: 10px; /* Coins arrondis pour un effet moderne */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre portée pour un effet d'élévation léger */
+  padding: 20px; /* Espacement interne autour du contenu */
+  text-align: center; /* Centre le texte horizontalement */
+  transition: transform 0.3s, box-shadow 0.3s; /* Effets de transition pour les interactions */
+  cursor: pointer; /* Change le curseur au survol pour indiquer que l'élément est cliquable */
+}
+
+/* Effet au survol pour les éléments de projet */
+.project:hover {
+  transform: translateY(-5px); /* Déplacement léger vers le haut */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Ombre portée plus prononcée pour un effet d'élévation */
+}
+
+/* Style pour les icônes de projet */
+.project-icon {
+  max-width: 80%; /* Limite la largeur maximale de l'icône */
+  height: auto; /* Maintient les proportions de l'icône */
+  border-radius: 10px; /* Coins arrondis pour l'icône */
+  margin-bottom: 15px; /* Espacement sous l'icône */
+  transition: opacity 0.3s; /* Effet de transition pour la modification de l'opacité */
+}
+
+/* Effet au survol pour les icônes de projet */
+.project-icon:hover {
+  opacity: 0.8; /* Réduit l'opacité au survol */
+}
+
+/* Style pour les titres de projet */
+h3 {
+  margin: 20px 0; /* Espacement au-dessus et en-dessous du titre */
+  font-size: 1.6em; /* Taille de police plus grande pour le titre */
+  color: #34495e; /* Couleur légèrement plus claire pour le titre */
+  font-weight: 500; /* Poids de la police pour le titre */
+}
+
+/* Style pour les descriptions des projets */
+p {
+  font-size: 1.1em; /* Taille de police légèrement plus grande pour une meilleure lisibilité */
+  color: #7f8c8d; /* Couleur du texte plus douce pour le paragraphe */
+  line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
+}
+
+/* Style pour les boutons dans les projets */
+button {
+  margin-top: 20px; /* Espacement au-dessus du bouton */
+  background-color: #3498db; /* Couleur du bouton plus vive */
+  color: #ffffff; /* Couleur du texte du bouton */
+  border-radius: 5px; /* Coins arrondis pour le bouton */
+  padding: 10px 20px; /* Espacement interne autour du texte */
+  font-size: 1em; /* Taille de police du bouton */
+  font-weight: 500; /* Poids de la police du bouton */
+  transition: background-color 0.3s, transform 0.3s; /* Effets de transition pour les interactions */
+}
+
+/* Effet au survol pour les boutons */
+button:hover {
+  background-color: #2980b9; /* Couleur du bouton au survol */
+  transform: scale(1.05); /* Agrandissement léger au survol */
+}

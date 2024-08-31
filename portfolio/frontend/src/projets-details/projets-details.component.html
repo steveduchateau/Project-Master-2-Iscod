@@ -1,0 +1,46 @@
+<!-- projets-details.component.html -->
+<!-- Affichage des détails d'un projet lorsque la variable 'projet' est définie -->
+<div *ngIf="projet" class="project-details">
+  
+  <!-- Titre du projet -->
+  <h1 class="project-title">{{ projet.nom }}</h1>
+
+  <!-- Section contenant les détails du projet -->
+  <div class="project-description">
+    <!-- Contexte du projet -->
+    <p *ngIf="projet.contexte"><strong>Contexte:</strong> {{ projet.contexte }}</p>
+    
+    <!-- Description du projet -->
+    <p *ngIf="projet.description"><strong>Description:</strong> {{ projet.description }}</p>
+    
+    <!-- Objectifs du projet -->
+    <p *ngIf="projet.objectifs"><strong>Objectifs:</strong> {{ projet.objectifs }}</p>
+    
+    <!-- Enjeux du projet -->
+    <p *ngIf="projet.enjeux"><strong>Enjeux:</strong> {{ projet.enjeux }}</p>
+    
+    <!-- Risques associés au projet -->
+    <p *ngIf="projet.risques"><strong>Risques:</strong> {{ projet.risques }}</p>
+    
+    <!-- Étapes du projet -->
+    <p *ngIf="projet.etapes"><strong>Étapes:</strong> {{ projet.etapes }}</p>
+    
+    <!-- Acteurs impliqués dans le projet -->
+    <p *ngIf="projet.acteurs"><strong>Acteurs:</strong> {{ projet.acteurs }}</p>
+    
+    <!-- Résultats du projet -->
+    <p *ngIf="projet.resultats"><strong>Résultats:</strong> {{ projet.resultats }}</p>
+    
+    <!-- Lendemains du projet (répercussions ou étapes futures) -->
+    <p *ngIf="projet.lendemains"><strong>Lendemains:</strong> {{ projet.lendemains }}</p>
+    
+    <!-- Regard critique sur le projet (évaluation ou feedback) -->
+    <p *ngIf="projet.regardCritique"><strong>Regard Critique:</strong> {{ projet.regardCritique }}</p>
+    
+    <!-- Compétences requises ou développées pendant le projet -->
+    <p *ngIf="projet.competences"><strong>Compétences:</strong> {{ projet.competences }}</p>
+  </div>
+  
+  <!-- Bouton pour revenir à la vue précédente -->
+  <button class="back-button" (click)="goBack()">Retour</button>
+</div>

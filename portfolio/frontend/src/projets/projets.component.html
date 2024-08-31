@@ -1,0 +1,23 @@
+<!-- Conteneur principal pour la section des projets -->
+<div id="projects" class="projects-container">
+  <!-- Section des projets -->
+  <div class="projects-category">
+    <!-- Titre de la section des projets -->
+    <h2>Projets</h2>
+
+    <!-- Grille pour afficher les projets -->
+    <div class="projects-grid">
+      <!-- Boucle sur la liste des projets pour générer des éléments dynamiquement -->
+      <div class="project" *ngFor="let projet of projets" [id]="'project-' + projet.id">
+        <!-- Nom du projet -->
+        <h3>{{ projet.nom }}</h3>
+        <!-- Description courte du projet -->
+        <p>{{ projet.shortDescription }}</p>
+        <!-- Bouton pour voir les détails du projet -->
+        <button mat-raised-button color="primary" [routerLink]="['/projets', projet.id]">
+          Voir les détails
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

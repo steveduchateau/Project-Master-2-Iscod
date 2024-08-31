@@ -1,27 +1,53 @@
-# Portfolio
+Portfolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
+Ce projet est un portfolio personnel conçu pour présenter mes compétences, projets, et expériences professionnelles. Il utilise une architecture web basée sur Docker pour déployer une application Angular pour mon frontend ,Python Flask pour mon backend et une base de données MySQL.
 
-## Development server
+Prérequis
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
-## Code scaffolding
+Docker
+Docker Compose
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Installation
 
-## Build
+Clonez le dépôt du projet : git clone https://github.com/steveduchateau/Project-Master-2-Iscod.git
+cd portfolio
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Construisez les images Docker pour le frontend, le backend, et la base de données :
 
-## Running unit tests
+docker-compose build
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Lancement du Projet
 
-## Running end-to-end tests
+Pour démarrer tous les conteneurs, utilisez la commande suivante :
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+docker-compose up
 
-## Further help
+(Tous les services (frontend, backend, et base de données) seront lancés simultanément.)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Configuration
+
+Frontend : L'application Angular est servie via Nginx sur le port 80.
+Backend : L'API Python Flask tourne sur le port 5001.
+Base de données : MySQL est accessible sur le port 3306.
+Pour modifier les configurations par défaut, éditez le fichier docker-compose.yml.
+
+Utilisation
+
+Accédez au frontend de l'application en ouvrant votre navigateur à l'adresse :http://localhost:8080.
+L'API backend est disponible sur http://localhost:5001.
+
+Technologies Utilisées
+
+Frontend : Angular, Nginx
+Backend : Python, Flask
+Base de données : MySQL
+Conteneurisation : Docker, Docker Compose
+
+Auteurs
+
+Steve Duchateau - Développeur principal - https://github.com/steveduchateau
+
+
+

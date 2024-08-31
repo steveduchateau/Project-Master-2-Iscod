@@ -1,0 +1,55 @@
+<!-- Conteneur principal pour les compétences -->
+<div id="skills" class="skills-container">
+  
+  <!-- Section pour les compétences techniques (Hard Skills) -->
+  <div id="hardSkills" class="skills-category">
+    <h2>Hard Skills</h2> <!-- Titre de la section Hard Skills -->
+    <div class="skills-grid">
+      <!-- Boucle pour afficher chaque compétence technique -->
+      <div class="skill" *ngFor="let competence of hardSkills">
+        <!-- Image de l'icône de compétence, construite dynamiquement à partir du nom de la compétence -->
+        <img [src]="'assets/img/' + competence.nom.toLowerCase().replace(' ', '') + '.png'" 
+             alt="{{ competence.nom }}" 
+             class="skill-icon">
+        <!-- Nom de la compétence -->
+        <h3>{{ competence.nom }}</h3>
+        <!-- Liste des détails de la compétence -->
+        <ul>
+          <!-- Niveau de compétence -->
+          <li><span class="font-weight-bold">Niveau:</span> {{ competence.niveau }}</li>
+          <!-- Description de la compétence -->
+          <li><span class="font-weight-bold">Description:</span> {{ competence.description }}</li>
+        </ul>
+        <!-- Bouton pour voir les détails de la compétence -->
+        <button mat-raised-button color="primary" (click)="openDetailsDialog(competence)">
+          Voir les détails
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section pour les compétences interpersonnelles (Soft Skills) -->
+  <div id="softSkills" class="skills-category">
+    <h2>Soft Skills</h2> <!-- Titre de la section Soft Skills -->
+    <div class="skills-grid">
+      <!-- Boucle pour afficher chaque compétence interpersonnelle -->
+      <div class="skill" *ngFor="let competence of softSkills">
+        <!-- Nom de la compétence -->
+        <h3>{{ competence.nom }}</h3>
+        <!-- Liste des détails de la compétence -->
+        <ul>
+          <!-- Niveau de compétence -->
+          <li><span class="font-weight-bold">Niveau:</span> {{ competence.niveau }}</li>
+          <!-- Description de la compétence -->
+          <li><span class="font-weight-bold">Description:</span> {{ competence.description }}</li>
+          <!-- Utilisation de la compétence -->
+        
+        </ul>
+        <!-- Bouton pour voir les détails de la compétence -->
+        <button mat-raised-button color="primary" (click)="openDetailsDialog(competence)">
+          Voir les détails
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

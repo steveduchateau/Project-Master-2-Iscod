@@ -1,0 +1,59 @@
+/* Styles pour le pied de page */
+.footer {
+    background-color: #000000; // Couleur de fond noire pour le pied de page
+    color: #fff; // Couleur du texte en blanc
+    padding: 60px 0; // Espacement vertical de 60 pixels en haut et en bas
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; // Police de caractères utilisée
+    font-size: 14px; // Taille de police de base
+    line-height: 1.6; // Hauteur de ligne pour améliorer la lisibilité
+    text-align: center; // Centrer le texte horizontalement
+}
+
+/* Styles pour le titre du pied de page */
+.footer-title {
+    color: #ffffff; // Couleur du titre en blanc
+    font-size: 20px; // Taille de la police du titre
+    text-transform: uppercase; // Transformer le texte en majuscules
+    margin-bottom: 20px; // Marge inférieure pour espacer le titre du contenu suivant
+}
+
+/* Styles pour les paragraphes dans l'élément address du pied de page */
+.footer address p {
+    color: #ccc; // Couleur du texte en gris clair pour les informations de contact
+    margin-bottom: 10px; // Marge inférieure pour espacer les paragraphes
+}
+
+/* Styles pour les icônes de réseaux sociaux */
+.social {
+    margin-top: 20px; // Marge supérieure pour espacer les icônes des autres éléments
+}
+
+/* Styles pour les liens des icônes de réseaux sociaux */
+.social a {
+    display: inline-block; // Afficher les liens en ligne avec une marge
+    margin: 0 10px; // Marge horizontale de 10 pixels entre les icônes
+    font-size: 24px; // Taille de police pour les icônes
+    color: #fff; // Couleur des icônes en blanc
+    transition: color 0.3s ease; // Transition pour l'effet de survol
+}
+
+/* Effet de survol pour les liens des icônes de réseaux sociaux */
+.social a:hover {
+    color: #f39c12; // Changer la couleur des icônes au survol
+}
+
+/* Styles pour le texte additionnel dans le pied de page */
+.footer-text {
+    margin-top: 20px; // Marge supérieure pour espacer le texte additionnel des autres éléments
+}
+
+/* Styles pour les liens dans le texte additionnel du pied de page */
+.footer-text a {
+    color: #fff; // Couleur des liens en blanc
+    text-decoration: none; // Supprimer la décoration par défaut des liens
+}
+
+/* Effet de survol pour les liens dans le texte additionnel */
+.footer-text a:hover {
+    color: #f39c12; // Changer la couleur des liens au survol
+}

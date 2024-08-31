@@ -1,0 +1,82 @@
+/* projets-details.component.scss */
+
+/* Styles pour le conteneur principal des détails du projet */
+.project-details {
+  padding: 40px; /* Espacement intérieur */
+  max-width: 900px; /* Largeur maximale du conteneur */
+  margin: 40px auto; /* Marges verticales et centrage horizontal */
+  background: #ffffff; /* Couleur de fond blanche */
+  border-radius: 12px; /* Coins arrondis */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Ombre portée légère */
+  position: relative; /* Positionnement relatif pour le bouton */
+  display: flex; /* Utilisation de Flexbox */
+  flex-direction: column; /* Direction des éléments enfants en colonne */
+  align-items: center; /* Alignement des éléments au centre */
+  font-family: 'Arial', sans-serif; /* Police de caractères */
+}
+
+/* Styles pour le titre du projet */
+.project-title {
+  font-size: 36px; /* Taille de la police */
+  color: #113e7e; /* Couleur du texte */
+  margin-bottom: 20px; /* Espacement en bas du titre */
+  text-align: center; /* Centrage du texte */
+  padding: 20px; /* Espacement intérieur */
+  border-bottom: 4px solid #113e7e; /* Bordure inférieure */
+  background-color: #f0f8ff; /* Couleur de fond légère */
+}
+
+/* Styles pour l'en-tête du projet (utilisé si nécessaire) */
+.project-header {
+  margin-bottom: 20px; /* Espacement en bas de l'en-tête */
+}
+
+/* Styles pour la date du projet */
+.project-date {
+  font-size: 18px; /* Taille de la police */
+  color: #999; /* Couleur du texte */
+  margin-bottom: 20px; /* Espacement en bas */
+}
+
+/* Styles pour la section de description du projet */
+.project-description {
+  line-height: 1.8; /* Hauteur de ligne pour une meilleure lisibilité */
+  width: 100%; /* Prend toute la largeur du conteneur */
+  padding: 0 20px; /* Espacement intérieur gauche et droite */
+  background: #f9f9f9; /* Couleur de fond très légère */
+  border-radius: 8px; /* Coins arrondis */
+  padding: 20px; /* Espacement intérieur */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Ombre portée très légère */
+}
+
+/* Styles pour les paragraphes à l'intérieur de la description du projet */
+.project-description p {
+  margin-bottom: 15px; /* Espacement en bas des paragraphes */
+  font-size: 16px; /* Taille de la police */
+  color: #333; /* Couleur du texte */
+}
+
+/* Styles pour les éléments forts (strong) à l'intérieur de la description */
+.project-description strong {
+  color: #113e7e; /* Couleur du texte pour les titres des sections */
+}
+
+/* Styles pour le bouton de retour */
+.back-button {
+  position: absolute; /* Positionnement absolu par rapport au conteneur parent */
+  bottom: 20px; /* Espacement en bas */
+  right: 20px; /* Espacement à droite */
+  padding: 12px 24px; /* Espacement intérieur */
+  background-color: #113e7e; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte */
+  border: none; /* Suppression des bordures */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur en forme de main au survol */
+  font-size: 16px; /* Taille de la police */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée légère */
+  
+  &:hover {
+    background-color: #0b2d5b; /* Couleur de fond au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre portée plus marquée au survol */
+  }
+}

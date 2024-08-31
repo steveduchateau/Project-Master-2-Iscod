@@ -1,0 +1,59 @@
+<!-- Contenu principal de la boîte de dialogue -->
+<mat-dialog-content>
+  <!-- Section principale de contenu -->
+  <div class="content-section">
+    
+    <!-- Titre principal affichant le nom de la compétence -->
+    <h2>{{ data.nom }}</h2>
+
+    <!-- Utilisation de la compétence -->
+    <ul>
+      <li><span class="font-weight-bold">Utilisation:</span> {{ data.utilisation }}</li>
+      <!-- Contexte professionnel dans lequel la compétence est utilisée -->
+      <li><span class="font-weight-bold">Contexte Professionnel:</span> {{ data.contexte_professionnel }}</li>
+    </ul>
+
+    <!-- Sous-titre indiquant les détails de la compétence -->
+    <h3>Détails de la Compétence</h3>
+    
+    <!-- Liste des anecdotes liées à la compétence -->
+    <div class="anecdote-list">
+      <h3>Anecdotes</h3>
+
+      <!-- Boucle à travers les anecdotes fournies dans les données -->
+      <div *ngFor="let anecdote of data.anecdotes" class="anecdote-item">
+        <!-- Titre de l'anecdote -->
+        <h5>{{ anecdote.titre }}</h5>
+
+        <!-- Description de l'anecdote -->
+        <p><strong>Description:</strong> {{ anecdote.description }}</p>
+
+        <!-- Résultat de l'anecdote -->
+        <p><strong>Résultat:</strong> {{ anecdote.resultat }}</p>
+        
+        <!-- Lien vers la réalisation, affiché seulement si 'lien_realisations' est défini -->
+        <a *ngIf="anecdote.lien_realisations" [href]="anecdote.lien_realisations" target="_blank">Voir la réalisation</a>
+      </div>
+    </div>
+
+    <!-- Informations supplémentaires sur la compétence -->
+    <div class="additional-info">
+      <h3>Informations Supplémentaires</h3>
+      <ul>
+        <!-- Liste des informations supplémentaires affichées -->
+        <li><span class="font-weight-bold">Marge de Progression:</span> {{ data.marge_progression }}</li>
+        <li><span class="font-weight-bold">Importance pour le Profil:</span> {{ data.importance_profil }}</li>
+        <li><span class="font-weight-bold">Vitesse d'Acquisition:</span> {{ data.vitesse_acquisition }}</li>
+        <li><span class="font-weight-bold">Conseils d'Expérience:</span> {{ data.conseils_experience }}</li>
+        <li><span class="font-weight-bold">Objectif à Moyen Terme:</span> {{ data.objectif_moyen_terme }}</li>
+        <li><span class="font-weight-bold">Formations en Cours:</span> {{ data.formations_en_cours }}</li>
+      </ul>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<!-- Actions du dialogue -->
+<mat-dialog-actions>
+  <!-- Bouton pour fermer la boîte de dialogue -->
+  <button mat-button (click)="closeDialog()">Fermer</button>
+</mat-dialog-actions>

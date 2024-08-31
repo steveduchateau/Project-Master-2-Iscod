@@ -1,0 +1,206 @@
+/* Variables */
+
+/* Couleur principale utilisée dans l'interface */
+$primary-color: #113e7e;
+
+/* Couleur secondaire utilisée pour les éléments de mise en évidence */
+$secondary-color: #60037c;
+
+/* Couleur de fond légère pour les sections */
+$light-gray: #f3f3f3;
+
+/* Couleur de texte gris foncé pour les sections de texte */
+$dark-gray: #444;
+
+/* Couleur de la ligne de la frise chronologique */
+$timeline-color: #770050;
+
+/* Titre h2 */
+h2 {
+    font-size: 20px; /* Taille uniforme pour les titres h2 */
+    font-weight: bold; /* Poids de la police pour mettre en avant les titres */
+    color: $primary-color; /* Couleur du texte en utilisant la couleur principale */
+    margin: 15px 0; /* Marge verticale au-dessus et en dessous des titres */
+    padding: 10px; /* Espacement interne autour du texte */
+    border: 1px solid $primary-color; /* Bordure autour du titre avec la couleur principale */
+    border-radius: 6px; /* Bordures arrondies pour un effet plus doux */
+    display: flex; /* Utilisation de flexbox pour un alignement flexible */
+    align-items: center; /* Alignement vertical des éléments (texte et image) */
+    justify-content: center; /* Centrage horizontal du texte et de l'image */
+    gap: 10px; /* Espacement entre l'image et le texte */
+    background-color: $light-gray; /* Couleur de fond légère pour le titre */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée douce pour un effet de profondeur */
+}
+
+h2 img {
+    width: 40px; /* Largeur uniforme pour les images dans les titres */
+    height: 40px; /* Hauteur uniforme pour les images dans les titres */
+    border-radius: 50%; /* Bordure arrondie pour les images, créant un effet circulaire */
+    margin-right: 10px; /* Espacement à droite de l'image pour séparer le texte */
+}
+
+/* Section "Projets" */
+#projects {
+    background-color: $light-gray; /* Couleur de fond légère pour la section des projets */
+    padding: 20px; /* Espacement interne autour du contenu des projets */
+
+    .projects-category {
+        max-width: 1200px; /* Largeur maximale pour le conteneur des projets */
+        margin: 0 auto; /* Centrage horizontal du conteneur */
+    }
+
+    h2 {
+        font-size: 24px; /* Taille du titre des projets */
+        font-weight: bold; /* Poids de la police pour les titres des projets */
+        color: $primary-color; /* Couleur du texte en utilisant la couleur principale */
+        margin-bottom: 20px; /* Marge en dessous du titre des projets */
+    }
+
+    .projects-grid {
+        display: grid; /* Utilisation du grid layout pour organiser les projets */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Création de colonnes flexibles pour les projets */
+        gap: 20px; /* Espacement entre les projets */
+    }
+
+    .project {
+        background: #fff; /* Couleur de fond blanche pour les cartes de projets */
+        border-radius: 8px; /* Bordures arrondies pour les cartes de projets */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée douce pour les cartes de projets */
+        padding: 20px; /* Espacement interne dans les cartes de projets */
+        text-align: center; /* Alignement du texte au centre de la carte */
+        display: flex; /* Utilisation de flexbox pour l'organisation des éléments */
+        flex-direction: column; /* Organisation verticale des éléments dans la carte */
+        align-items: center; /* Centrage horizontal des éléments */
+        justify-content: center; /* Centrage vertical des éléments */
+    }
+
+    .project-icon {
+        width: 100px; /* Largeur uniforme pour les icônes de projet */
+        height: 100px; /* Hauteur uniforme pour les icônes de projet */
+        object-fit: cover; /* Assure que l'image remplit le conteneur sans déformation */
+        border-radius: 8px; /* Bordures arrondies pour les icônes */
+        margin-bottom: 15px; /* Espacement sous l'icône */
+    }
+
+    h3 {
+        margin: 15px 0; /* Marge verticale autour des titres h3 dans les projets */
+        font-size: 1.5em; /* Taille du texte des sous-titres dans les projets */
+        color: #333; /* Couleur du texte pour les sous-titres des projets */
+    }
+
+    p {
+        font-size: 1em; /* Taille du texte pour les descriptions des projets */
+        color: #666; /* Couleur du texte pour les descriptions des projets */
+    }
+
+    button {
+        margin-top: 15px; /* Marge au-dessus du bouton pour les projets */
+    }
+}
+
+/* Section "Expérience" */
+#experience {
+    background-color: $light-gray; /* Couleur de fond légère pour la section d'expérience */
+    padding: 80px 0; /* Espacement vertical en haut et en bas de la section */
+    text-align: center; /* Alignement du texte au centre de la section */
+
+    .container {
+        position: relative; /* Position relative pour les éléments internes */
+
+        .nav-buttons {
+            display: flex; /* Utilisation de flexbox pour aligner les boutons de navigation */
+            justify-content: center; /* Centrage horizontal des boutons */
+            margin-bottom: 30px; /* Marge en dessous des boutons de navigation */
+
+            .nav-btn {
+                background-color: $primary-color; /* Couleur de fond des boutons de navigation */
+                color: #fff; /* Couleur du texte des boutons */
+                border: none; /* Suppression des bordures des boutons */
+                padding: 10px 20px; /* Espacement interne des boutons */
+                margin: 0 10px; /* Espacement horizontal entre les boutons */
+                cursor: pointer; /* Curseur de souris en forme de main au survol des boutons */
+                font-size: 16px; /* Taille du texte des boutons */
+                border-radius: 5px; /* Bordures arrondies des boutons */
+                transition: background-color 0.3s ease; /* Transition douce pour les changements de couleur de fond */
+                
+                &.active {
+                    background-color: darken($primary-color, 10%); /* Couleur de fond plus foncée pour le bouton actif */
+                }
+
+                &:hover {
+                    background-color: darken($primary-color, 15%); /* Couleur de fond encore plus foncée au survol */
+                }
+            }
+        }
+
+        .timeline {
+            position: relative; /* Position relative pour les éléments internes */
+            display: flex; /* Utilisation de flexbox pour organiser les éléments en colonne */
+            flex-direction: column; /* Organisation verticale des éléments */
+            align-items: center; /* Centrage horizontal des éléments */
+            padding: 20px; /* Espacement interne dans la section de la frise chronologique */
+            margin-top: 50px; /* Marge au-dessus de la frise chronologique */
+
+            .line {
+                position: absolute; /* Position absolue pour la ligne de la frise chronologique */
+                width: 4px; /* Largeur de la ligne */
+                background-color: $timeline-color; /* Couleur de la ligne */
+                top: 0; /* Positionnement en haut de la section */
+                bottom: 0; /* Positionnement en bas de la section */
+                left: 50%; /* Centrage horizontal de la ligne */
+                transform: translateX(-50%); /* Correction de l'alignement pour centrer la ligne */
+            }
+
+            .item {
+                position: relative; /* Position relative pour les éléments internes */
+                width: calc(50% - 20px); /* Largeur des éléments de la frise chronologique */
+                background-color: #fff; /* Couleur de fond blanche pour les éléments */
+                padding: 20px; /* Espacement interne des éléments */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée douce pour les éléments */
+                transition: transform 0.3s ease; /* Transition douce pour les effets de survol */
+                margin-bottom: 40px; /* Marge en dessous des éléments */
+                display: flex; /* Utilisation de flexbox pour aligner les éléments */
+                align-items: center; /* Centrage vertical des éléments */
+
+                img {
+                    width: 80px; /* Taille uniforme pour les miniatures des images */
+                    height: 80px; /* Hauteur uniforme pour les miniatures */
+                    border-radius: 50%; /* Bordure arrondie pour les miniatures */
+                    margin-right: 20px; /* Espacement à droite des miniatures */
+                }
+
+                &.left {
+                    align-self: flex-start; /* Alignement à gauche pour les éléments avec la classe "left" */
+                    text-align: right; /* Alignement du texte à droite */
+                }
+
+                &.right {
+                    align-self: flex-end; /* Alignement à droite pour les éléments avec la classe "right" */
+                    text-align: left; /* Alignement du texte à gauche */
+                }
+
+                &:hover {
+                    transform: translateY(-5px); /* Effet de survol pour déplacer l'élément vers le haut */
+                }
+
+                .content {
+                    text-align: left; /* Alignement du texte à gauche dans le contenu des éléments */
+
+                    p {
+                        font-size: 16px; /* Taille du texte des paragraphes */
+                        color: $dark-gray; /* Couleur du texte des paragraphes */
+                        line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
+                        margin-bottom: 0; /* Suppression de la marge en dessous des paragraphes */
+                    }
+
+                    span {
+                        display: block; /* Affichage en bloc pour les éléments de type "span" */
+                        font-size: 16px; /* Taille du texte des éléments "span" */
+                        color: $secondary-color; /* Couleur du texte des éléments "span" */
+                        margin-bottom: 10px; /* Marge en dessous des éléments "span" */
+                    }
+                }
+            }
+        }
+    }
+}
