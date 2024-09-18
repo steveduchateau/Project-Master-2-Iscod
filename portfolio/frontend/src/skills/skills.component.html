@@ -1,6 +1,6 @@
 <!-- Conteneur principal pour les compétences -->
 <div id="skills" class="skills-container">
-  
+
   <!-- Section pour les compétences techniques (Hard Skills) -->
   <div id="hardSkills" class="skills-category">
     <h2>Hard Skills</h2> <!-- Titre de la section Hard Skills -->
@@ -42,8 +42,8 @@
           <li><span class="font-weight-bold">Niveau:</span> {{ competence.niveau }}</li>
           <!-- Description de la compétence -->
           <li><span class="font-weight-bold">Description:</span> {{ competence.description }}</li>
-          <!-- Utilisation de la compétence -->
-        
+          <!-- Ajout d'une ligne pour l'utilisation de la compétence si nécessaire -->
+          <!-- <li><span class="font-weight-bold">Utilisation:</span> {{ competence.utilisation }}</li> -->
         </ul>
         <!-- Bouton pour voir les détails de la compétence -->
         <button mat-raised-button color="primary" (click)="openDetailsDialog(competence)">

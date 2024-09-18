@@ -22,6 +22,9 @@ FROM nginx:alpine
 # Copier les fichiers construits du répertoire dist/portfolio/browser vers le répertoire par défaut de NGINX
 COPY --from=build /app/dist/portfolio/browser /usr/share/nginx/html
 
+# Copier le fichier de configuration NGINX personnalisé
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Exposer le port 80
 EXPOSE 80
 

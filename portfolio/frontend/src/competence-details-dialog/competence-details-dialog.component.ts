@@ -14,7 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [CommonModule, MatDialogModule, MatButtonModule] // Modules Angular nécessaires pour ce composant
 })
 export class CompetenceDetailsDialogComponent {
-competence: any;
+  
+  competence: any; // Variable pour stocker les détails de la compétence
+  anecdotes: any[] = []; // Variable pour stocker les anecdotes désérialisées
   
   /**
    * Constructeur du composant.
@@ -24,7 +26,20 @@ competence: any;
   constructor(
     public dialogRef: MatDialogRef<CompetenceDetailsDialogComponent>, // Référence à la boîte de dialogue
     @Inject(MAT_DIALOG_DATA) public data: any // Données injectées dans la boîte de dialogue
-  ) {}
+  ) {
+    this.competence = data; // Assigner les données passées à la compétence
+
+    // Vérifier si les anecdotes sont une chaîne JSON et les désérialiser
+    if (typeof data.anecdotes === 'string') {
+      try {
+        this.anecdotes = JSON.parse(data.anecdotes);
+      } catch (error) {
+        console.error('Erreur lors de la désérialisation des anecdotes:', error);
+      }
+    } else {
+      this.anecdotes = data.anecdotes; // Si ce n'est pas une chaîne, on assigne directement les anecdotes
+    }
+  }
 
   /**
    * Méthode pour fermer la boîte de dialogue.
