@@ -27,6 +27,19 @@ services:
     networks:
       - portfolio_app_network
 
+  nginx:
+    container_name: portfolio-nginx
+    image: nginx:latest
+    volumes:
+      - ./frontend/nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/build:/usr/share/nginx/html # Assure-toi que "build" contient les fichiers statiques d'Angular
+    ports:
+      - "8081:80"
+    depends_on:
+      - frontend
+    networks:
+      - portfolio_app_network
+
   db:
     container_name: portfolio-db
     image: mysql:8.0
