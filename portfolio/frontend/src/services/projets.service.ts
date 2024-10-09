@@ -1,16 +1,16 @@
 // Importation des modules nécessaires depuis Angular
 import { Injectable } from '@angular/core'; // Importation du décorateur Injectable pour permettre l'injection de dépendances
 import { HttpClient } from '@angular/common/http'; // Importation de HttpClient pour effectuer des requêtes HTTP
-import { Observable } from 'rxjs'; // Importation de Observable pour la gestion des flux de données asynchrones
+import { Observable } from 'rxjs'; // Importation de Observable pour gérer les flux de données asynchrones
+import { environment } from '../environments/environment'; // Importation des variables d'environnement
 
-// Déclaration du service en tant que fournisseur injectable dans toute l'application
+// Déclaration de la classe ProjetsService en tant que fournisseur injectable dans toute l'application
 @Injectable({
   providedIn: 'root' // Spécifie que le service sera disponible dans toute l'application
 })
-// Définition de la classe du service
 export class ProjetsService {
-  // URL de l'API pour accéder aux projets
-  private apiUrl = 'http://127.0.0.1:5001/api/projets'; // URL de l'API Flask pour la gestion des projets
+  // URL de l'API pour accéder aux projets, récupérée des variables d'environnement
+  private apiUrl = environment.apiUrlProjets; // Utilise l'URL des projets depuis l'environnement
 
   // Constructeur du service, injecte le client HTTP pour effectuer des requêtes
   constructor(private http: HttpClient) {}

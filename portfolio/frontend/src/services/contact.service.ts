@@ -1,19 +1,19 @@
 // Importation des modules nécessaires depuis Angular
-import { Injectable } from '@angular/core'; // Importation du décorateur Injectable pour indiquer que la classe peut être injectée comme dépendance
+import { Injectable } from '@angular/core'; // Importation du décorateur Injectable pour permettre l'injection de dépendances
 import { HttpClient } from '@angular/common/http'; // Importation de HttpClient pour effectuer des requêtes HTTP
-import { Observable } from 'rxjs'; // Importation de Observable pour travailler avec des flux de données asynchrones
+import { Observable } from 'rxjs'; // Importation de Observable pour gérer les flux de données asynchrones
+import { environment } from '../environments/environment'; // Importation des variables d'environnement
 
-// Déclaration du service en tant que fournisseur injectable dans toute l'application
+// Déclaration de la classe ContactService en tant que fournisseur injectable dans toute l'application
 @Injectable({
   providedIn: 'root' // Spécifie que le service sera disponible dans toute l'application
 })
-// Définition de la classe du service
 export class ContactService {
-  // URL de l'API pour envoyer les données de contact
-  private apiUrl = 'http://127.0.0.1:5001/api/contact'; // URL de l'API Flask pour la gestion des contacts
+  // URL de l'API pour envoyer les données de contact, récupérée des variables d'environnement
+  private apiUrl = environment.apiUrlContact; // Utilise l'URL de contact depuis l'environnement
 
   // Constructeur du service, injecte le client HTTP pour effectuer des requêtes
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Méthode pour envoyer le formulaire de contact
   sendContactForm(data: any): Observable<any> {

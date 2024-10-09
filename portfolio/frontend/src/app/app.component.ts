@@ -13,6 +13,7 @@ import { QuisuisjeComponent } from '../quisuisje/quisuisje.component';
 import { SkillsComponent } from '../skills/skills.component';
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

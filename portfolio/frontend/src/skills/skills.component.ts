@@ -10,6 +10,7 @@ import { CompetenceDetailsDialogComponent } from '../competence-details-dialog/c
 import { CompetencesService } from '../services/competences.service';
 
 
+
 // Définition du composant Angular
 @Component({
   selector: 'app-skills', // Sélecteur pour utiliser ce composant dans les templates HTML
