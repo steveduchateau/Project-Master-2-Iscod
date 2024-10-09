@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'; // Importation du décorateur Component pour définir un composant Angular
 import { FormsModule } from '@angular/forms'; // Importation de FormsModule pour gérer les formulaires et la liaison des données
-import { ContactService } from '../services/contact.service'; // Importation du service ContactService pour interagir avec l'API
+import { ContactService } from '../services/contact.service';
 
 // Définition du composant ContactComponent
 @Component({
