@@ -9,10 +9,10 @@ services:
       - "5001:5001"
     environment:
       - FLASK_ENV=production
-      - MYSQL_HOST=db
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=steve
-      - MYSQL_DB=Portfolio
+      - MYSQL_HOST=mysql.railway.internal # l'hôte de la base de données
+      - MYSQL_USER=root  # l'utilisateur de la base de données
+      - MYSQL_PASSWORD=sJZJplXzZTroxulYDRHPaaMhGDsSOKtu #le mot de passe de la base de données
+      - MYSQL_DB=railway # le nom de la base de données
     depends_on:
       - db
     networks:

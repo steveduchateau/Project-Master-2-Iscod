@@ -7,10 +7,11 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})  # Configuration CORS pour autoriser toutes les origines
 
 # Configuration de la base de données MySQL
-app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', 'localhost')  # Hôte de la base de données, avec valeur par défaut 'localhost'
-app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')  # Utilisateur de la base de données, avec valeur par défaut 'root'
-app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', 'steve')  # Mot de passe de la base de données, avec valeur par défaut 'steve'
-app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'Portfolio')  # Nom de la base de données, avec valeur par défaut 'Portfolio'
+# Configuration de la base de données MySQL
+app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', 'mysql.railway.internal')  # hôte de la base de données
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')  # utilisateur de la base de données
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', 'sJZJplXzZTroxulYDRHPaaMhGDsSOKtu')  # mot de passe de la base de données
+app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'railway')  #nom de la base de données
 
 mysql = MySQL(app)  # Création de l'objet MySQL pour interagir avec la base de données
 
