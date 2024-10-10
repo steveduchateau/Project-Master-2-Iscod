@@ -27,15 +27,18 @@ def test_db():
         cursor.close()  # Fermeture du curseur
         return "Connexion à la base de données MySQL réussie !", 200  # Réponse indiquant que la connexion est réussie
     except Exception as e:
-        return f"Erreur de connexion à la base de données MySQL : {str(e)}", 500
+        return jsonify({'error': f"Erreur de connexion à la base de données MySQL : {str(e)}"}), 500
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
     data = request.json  # Récupération des données JSON envoyées dans la requête POST
-    first_name = data.get('firstName')  # Extraction du prénom
-    last_name = data.get('lastName')  # Extraction du nom
-    email = data.get('email')  # Extraction de l'adresse email
-    message = data.get('message')  # Extraction du message
+    first_name = data.get('first_Name')  # Vérifiez que les clés correspondent aux données envoyées
+    last_name = data.get('last_Name')
+    email = data.get('email')
+    message = data.get('message')
+
+    if not all([first_name, last_name, email, message]):
+        return jsonify({'error': 'Tous les champs doivent être remplis.'}), 400
 
     try:
         cursor = mysql.connection.cursor()  # Création d'un curseur pour exécuter des requêtes SQL
@@ -45,7 +48,7 @@ def contact():
         cursor.close()  # Fermeture du curseur
         return jsonify({'message': 'Message enregistré avec succès'}), 200  # Réponse de succès
     except Exception as e:
-        return jsonify({'message': f'Erreur lors de l\'enregistrement du message : {str(e)}'}), 500
+        return jsonify({'error': f'Erreur lors de l\'enregistrement du message : {str(e)}'}), 500
 
 @app.route('/api/competences/techniques', methods=['GET'])
 def get_competences_techniques():
@@ -77,7 +80,7 @@ def get_competences_techniques():
         
         return jsonify(competences), 200  # Réponse contenant la liste des compétences techniques
     except Exception as e:
-        return jsonify({'message': f'Erreur lors de la récupération des compétences techniques : {str(e)}'}), 500
+        return jsonify({'error': f'Erreur lors de la récupération des compétences techniques : {str(e)}'}), 500
 
 @app.route('/api/competences/humaines', methods=['GET'])
 def get_competences_humaines():
@@ -110,7 +113,7 @@ def get_competences_humaines():
         
         return jsonify(competences), 200  # Réponse contenant la liste des compétences humaines
     except Exception as e:
-        return jsonify({'message': f'Erreur lors de la récupération des compétences humaines : {str(e)}'}), 500
+        return jsonify({'error': f'Erreur lors de la récupération des compétences humaines : {str(e)}'}), 500
 
 @app.route('/api/projets', methods=['GET'])
 def get_projets():
@@ -141,13 +144,13 @@ def get_projets():
 
         return jsonify(projets), 200  # Réponse contenant la liste des projets
     except Exception as e:
-        return jsonify({'message': f'Erreur lors de la récupération des projets : {str(e)}'}), 500
+        return jsonify({'error': f'Erreur lors de la récupération des projets : {str(e)}'}), 500
 
 @app.route('/api/projets/<int:id>', methods=['GET'])
 def get_projet_by_id(id):
     try:
         cursor = mysql.connection.cursor()  # Création d'un curseur pour exécuter des requêtes SQL
-        cursor.execute('SELECT * FROM projets WHERE id = %s', (id,))  # Exécution de la requête
+        cursor.execute('SELECT * FROM projets WHERE id = %s', (id,))  # Exécution de la requête avec un paramètre
         row = cursor.fetchone()  # Récupération du résultat
         cursor.close()  # Fermeture du curseur
         
@@ -167,11 +170,11 @@ def get_projet_by_id(id):
                 'regardCritique': row[11],
                 'competences': row[12]
             }
-            return jsonify(projet), 200  # Réponse contenant les détails du projet
+            return jsonify(projet), 200  # Réponse contenant le projet recherché
         else:
-            return jsonify({'message': 'Projet non trouvé'}), 404  # Réponse indiquant que le projet n'a pas été trouvé
+            return jsonify({'error': 'Projet non trouvé.'}), 404  # Projet non trouvé
     except Exception as e:
-        return jsonify({'message': f'Erreur lors de la récupération du projet : {str(e)}'}), 500
+        return jsonify({'error': f'Erreur lors de la récupération du projet : {str(e)}'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=5001)  # Exécution de l'application Flask
