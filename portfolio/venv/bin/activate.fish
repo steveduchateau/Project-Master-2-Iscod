@@ -33,10 +33,11 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/steveduchateaumelaniesteve/Desktop/portfolio/venv"
+set -gx VIRTUAL_ENV "/Users/steveduchateaumelaniesteve/Desktop/Project-Master-2-Iscod/portfolio/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
+set -gx VIRTUAL_ENV_PROMPT "(venv) "
 
 # Unset PYTHONHOME if set.
 if set -q PYTHONHOME
@@ -65,5 +66,4 @@ if test -z "$VIRTUAL_ENV_DISABLE_PROMPT"
     end
 
     set -gx _OLD_FISH_PROMPT_OVERRIDE "$VIRTUAL_ENV"
-    set -gx VIRTUAL_ENV_PROMPT "(venv) "
 end
