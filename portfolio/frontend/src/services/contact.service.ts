@@ -10,7 +10,7 @@ import { Observable } from 'rxjs'; // Importation de Observable pour travailler 
 // Définition de la classe du service
 export class ContactService {
   // URL de l'API pour envoyer les données de contact
-  private apiUrl = 'https://portfolio-backend.onrender.com/api/contact'; // URL de l'API Flask pour la gestion des contacts
+  private apiUrl = 'https://project-master-2-iscod.onrender.com/api/contact'; // URL de l'API Flask pour la gestion des contacts
 
   // Constructeur du service, injecte le client HTTP pour effectuer des requêtes
   constructor(private http: HttpClient) { }
