@@ -29,7 +29,7 @@ def test_db():
     except Exception as e:
         return jsonify({'error': f"Erreur de connexion à la base de données MySQL : {str(e)}"}), 500
 
-@app.route('/api/contact', methods=['POST'])
+@app.route('/api/contact_messages', methods=['POST'])
 def contact():
     data = request.json  # Récupération des données JSON envoyées dans la requête POST
     first_name = data.get('first_Name')  # Vérifiez que les clés correspondent aux données envoyées
