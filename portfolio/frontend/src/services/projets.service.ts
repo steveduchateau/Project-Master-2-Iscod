@@ -10,7 +10,7 @@ import { Observable } from 'rxjs'; // Importation de Observable pour la gestion 
 // Définition de la classe du service
 export class ProjetsService {
   // URL de l'API pour accéder aux projets
-  private apiUrl = 'https://project-master-2-iscod.onrender.com/api/projets'; // Nouvelle URL de l'API Flask pour la gestion des projets
+  private apiUrl = 'http://127.0.0.1:5001/api/projets'; // URL de l'API Flask pour la gestion des projets
 
   // Constructeur du service, injecte le client HTTP pour effectuer des requêtes
   constructor(private http: HttpClient) {}

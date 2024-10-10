@@ -18,8 +18,8 @@ export interface Competence {
 // Définition de la classe du service
 export class CompetencesService {
   // URL de l'API pour accéder aux données des compétences techniques et humaines
-  private apiUrlTechniques = 'https://project-master-2-iscod.onrender.com/api/competences/techniques';
-  private apiUrlHumaines = 'https://project-master-2-iscod.onrender.com/api/competences/humaines';
+  private apiUrlTechniques = 'http://127.0.0.1:5001/api/competences/techniques';
+  private apiUrlHumaines = 'http://127.0.0.1:5001/api/competences/humaines';
 
   // Constructeur du service, injecte le client HTTP pour effectuer des requêtes
   constructor(private http: HttpClient) {}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'; // Importation du décorateur Component pour définir un composant Angular
 import { FormsModule } from '@angular/forms'; // Importation de FormsModule pour gérer les formulaires et la liaison des données
-import { ContactService } from '../services/contact.service';
+import { ContactService } from '../services/contact.service'; // Importation du service ContactService pour interagir avec l'API
 
 // Définition du composant ContactComponent
 @Component({
@@ -13,8 +13,8 @@ import { ContactService } from '../services/contact.service';
 export class ContactComponent {
   // Déclaration d'un objet contact pour stocker les données du formulaire
   contact = {
-    first_Name: '', // Champ pour le prénom (modifié)
-    last_Name: '', // Champ pour le nom de famille (modifié)
+    firstName: '', // Champ pour le prénom
+    lastName: '', // Champ pour le nom de famille
     email: '', // Champ pour l'adresse email
     message: '' // Champ pour le message
   };
@@ -25,7 +25,7 @@ export class ContactComponent {
   // Méthode appelée lors de la soumission du formulaire
   onSubmit(): void {
     // Vérifie que tous les champs du formulaire sont remplis
-    if (this.contact.first_Name && this.contact.last_Name && this.contact.email && this.contact.message) {
+    if (this.contact.firstName && this.contact.lastName && this.contact.email && this.contact.message) {
       // Appelle la méthode sendContactForm du ContactService pour envoyer les données du formulaire au serveur
       this.contactService.sendContactForm(this.contact).subscribe({
         // Gestion de la réponse du serveur en cas de succès
@@ -33,7 +33,7 @@ export class ContactComponent {
           console.log('Message envoyé !', response); // Affiche une confirmation dans la console
           alert('Message envoyé avec succès !'); // Affiche une alerte pour indiquer le succès de l'envoi
           // Réinitialise le formulaire après l'envoi réussi
-          this.contact = { first_Name: '', last_Name: '', email: '', message: '' }; // Réinitialisation modifiée
+          this.contact = { firstName: '', lastName: '', email: '', message: '' };
         },
         // Gestion des erreurs en cas d'échec de l'envoi
         error: (error) => {

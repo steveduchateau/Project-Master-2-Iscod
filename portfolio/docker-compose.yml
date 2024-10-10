@@ -9,11 +9,12 @@ services:
       - "5001:5001"
     environment:
       - FLASK_ENV=production
-      - MYSQL_HOST=mysql.railway.internal  # l'hôte de la base de données Railway
-      - MYSQL_PORT=43700  # le port de la base de données Railway
-      - MYSQL_USER=root  # l'utilisateur de la base de données
-      - MYSQL_PASSWORD=sJZJplXzZTroxulYDRHPaaMhGDsSOKtu # le mot de passe de la base de données
-      - MYSQL_DB=railway # le nom de la base de données
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=steve
+      - MYSQL_DB=Portfolio
+    depends_on:
+      - db
     networks:
       - portfolio_app_network
 
@@ -31,11 +32,24 @@ services:
     image: nginx:latest
     volumes:
       - ./frontend/nginx.conf:/etc/nginx/nginx.conf
-      - ./frontend/build:/usr/share/nginx/html
+      - ./frontend/build:/usr/share/nginx/html 
     ports:
       - "8081:80"
     depends_on:
       - frontend
+    networks:
+      - portfolio_app_network
+
+  db:
+    container_name: portfolio-db
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: steve
+      MYSQL_DATABASE: Portfolio
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - portfolio_app_network
 
