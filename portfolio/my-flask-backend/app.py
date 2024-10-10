@@ -11,7 +11,7 @@ app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', 'junction.proxy.rlwy.net')  #
 app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')  # utilisateur de la base de données
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', 'sJZJplXzZTroxulYDRHPaaMhGDsSOKtu')  # mot de passe de la base de données
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'railway')  # nom de la base de données
-app.config['MYSQL_PORT'] = os.getenv('MYSQL_PORT', 43700)  # port de la base de données
+app.config['MYSQL_PORT'] = int(os.getenv('MYSQL_PORT', 43700))  # port de la base de données
 
 mysql = MySQL(app)  # Création de l'objet MySQL pour interagir avec la base de données
 
@@ -167,11 +167,11 @@ def get_projet_by_id(id):
                 'regardCritique': row[11],
                 'competences': row[12]
             }
-            return jsonify(projet), 200  # Réponse contenant les détails du projet spécifique
+            return jsonify(projet), 200  # Réponse contenant les détails du projet
         else:
-            return jsonify({'message': 'Projet non trouvé'}), 404
+            return jsonify({'message': 'Projet non trouvé'}), 404  # Réponse indiquant que le projet n'a pas été trouvé
     except Exception as e:
         return jsonify({'message': f'Erreur lors de la récupération du projet : {str(e)}'}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5001)
