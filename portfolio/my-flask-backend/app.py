@@ -11,6 +11,7 @@ app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', 'junction.proxy.rlwy.net')  #
 app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')  # utilisateur de la base de données
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', 'sJZJplXzZTroxulYDRHPaaMhGDsSOKtu')  # mot de passe de la base de données
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'railway')  # nom de la base de données
+app.config['MYSQL_PORT'] = os.getenv('MYSQL_PORT', 43700)  # port de la base de données
 
 mysql = MySQL(app)  # Création de l'objet MySQL pour interagir avec la base de données
 
