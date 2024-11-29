@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router'; // Importations pour la
 import { filter } from 'rxjs/operators'; // Importation de l'opérateur filter pour RxJS
 import { CommonModule } from '@angular/common'; // Module commun pour les directives Angular de base
 import { RouterModule } from '@angular/router'; // Module pour les fonctionnalités de routage
+import { ProjetsService } from './projets.service'; // Importation du service pour récupérer les projets
 
 @Component({
   selector: 'app-header', // Sélecteur pour utiliser ce composant dans les templates
@@ -12,13 +13,13 @@ import { RouterModule } from '@angular/router'; // Module pour les fonctionnalit
   imports: [CommonModule, RouterModule] // Modules nécessaires pour le composant
 })
 export class HeaderComponent implements OnInit {
-  // Liste des IDs des projets, utilisée pour les menus déroulants ou autres fonctionnalités
-  projects: number[] = [1, 2, 3, 4, 5];
+  // Liste des projets, initialisée vide
+  projects: any[] = [];
 
   // Variable pour stocker la route actuelle
   currentRoute: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private projetsService: ProjetsService) {}
 
   ngOnInit(): void {
     // Abonnez-vous aux événements de navigation pour mettre à jour la route actuelle
@@ -26,6 +27,11 @@ export class HeaderComponent implements OnInit {
       filter(event => event instanceof NavigationEnd) // Filtre pour ne traiter que les événements de fin de navigation
     ).subscribe(() => {
       this.currentRoute = this.router.url; // Met à jour la route actuelle
+    });
+
+    // Récupère les projets depuis l'API et met à jour la liste des projets
+    this.projetsService.getProjets().subscribe((data) => {
+      this.projects = data; // Met à jour la variable projects avec les données des projets
     });
   }
 
