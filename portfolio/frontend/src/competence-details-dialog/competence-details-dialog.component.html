@@ -39,20 +39,22 @@
         <li *ngIf="competence.vitesse_acquisition">
           <span class="font-weight-bold">Vitesse d'Acquisition:</span> {{ competence.vitesse_acquisition }}
         </li>
-        <li *ngIf="competence.conseils_experience">
-          <span class="font-weight-bold">Conseils d'Expérience:</span> {{ competence.conseils_experience }}
+        <li *ngIf="competence.cas_utilisation">
+          <span class="font-weight-bold">Cas d'Utilisation:</span> {{ competence.cas_utilisation }}
         </li>
-        <li *ngIf="competence.objectif_moyen_terme">
-          <span class="font-weight-bold">Objectif à Moyen Terme:</span> {{ competence.objectif_moyen_terme }}
+        <li *ngIf="competence.conseils_experience">
+          <span class="font-weight-bold">Conseils et Expérience:</span> {{ competence.conseils_experience }}
         </li>
         <li *ngIf="competence.formations_en_cours">
           <span class="font-weight-bold">Formations en Cours:</span> {{ competence.formations_en_cours }}
+        </li>
+        <li *ngIf="competence.objectif_moyen_terme">
+          <span class="font-weight-bold">Objectif à Moyen Terme:</span> {{ competence.objectif_moyen_terme }}
         </li>
       </ul>
     </div>
   </div>
 </mat-dialog-content>
-
-<mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">Fermer</button>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()">Fermer</button>
 </mat-dialog-actions>
