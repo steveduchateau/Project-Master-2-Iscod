@@ -37,8 +37,8 @@
           <li>
             <a [routerLink]="['/']" class="dropdown-item" (click)="scrollToSection('projects')">Tous les Projets</a>
           </li>
-          <li *ngFor="let projectId of projects">
-            <a [routerLink]="['/projets', projectId]" class="dropdown-item">Projet {{ projectId }}</a>
+          <li *ngFor="let project of projects">
+            <a [routerLink]="['/projets', project.id]" class="dropdown-item">{{ project.nom }}</a> <!-- Affichage du nom du projet -->
           </li>
         </ul>
       </li>
