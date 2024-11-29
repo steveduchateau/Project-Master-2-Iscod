@@ -1,41 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router'; // Importations pour la gestion de la navigation
-import { filter } from 'rxjs/operators'; // Importation de l'opérateur filter pour RxJS
-import { CommonModule } from '@angular/common'; // Module commun pour les directives Angular de base
-import { RouterModule } from '@angular/router'; // Module pour les fonctionnalités de routage
+import { Router, NavigationEnd } from '@angular/router'; 
+import { filter } from 'rxjs/operators'; 
+import { CommonModule } from '@angular/common'; 
+import { RouterModule } from '@angular/router'; 
+import { ProjetsService } from '../services/projets.service';
 
 @Component({
-  selector: 'app-header', // Sélecteur pour utiliser ce composant dans les templates
-  standalone: true, // Composant autonome, ne dépend pas d'un module NgModule
-  templateUrl: './header.component.html', // Template HTML associé à ce composant
-  styleUrls: ['./header.component.scss'], // Styles SCSS associés à ce composant
-  imports: [CommonModule, RouterModule] // Modules nécessaires pour le composant
+  selector: 'app-header',
+  standalone: true,
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
+  imports: [CommonModule, RouterModule]
 })
 export class HeaderComponent implements OnInit {
-  // Liste des IDs des projets, utilisée pour les menus déroulants ou autres fonctionnalités
-  projects: number[] = [1, 2, 3, 4, 5];
-
-  // Variable pour stocker la route actuelle
+  projects: any[] = [];  // Liste des projets qui contiendra les noms et autres informations
   currentRoute: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private projetsService: ProjetsService) {}
 
   ngOnInit(): void {
-    // Abonnez-vous aux événements de navigation pour mettre à jour la route actuelle
+    // Récupérer les projets au moment de l'initialisation du composant
+    this.projetsService.getProjets().subscribe((projets: any[]) => {
+      this.projects = projets; // On assigne la réponse de l'API à la variable projects
+    });
+
+    // Gérer la navigation
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd) // Filtre pour ne traiter que les événements de fin de navigation
+      filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      this.currentRoute = this.router.url; // Met à jour la route actuelle
+      this.currentRoute = this.router.url;
     });
   }
 
   scrollToSection(sectionId: string) {
-    // Méthode pour faire défiler la page jusqu'à une section spécifique
-    // Assure que le défilement ne se fait que si vous êtes sur la page d'accueil
     if (this.currentRoute === '/accueil') {
-      const element = document.getElementById(sectionId); // Récupère l'élément avec l'ID spécifié
+      const element = document.getElementById(sectionId);
       if (element) {
-        // Fait défiler l'élément en douceur dans la vue
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
