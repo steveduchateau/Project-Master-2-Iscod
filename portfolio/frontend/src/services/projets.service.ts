@@ -1,4 +1,3 @@
-// Importation des modules nécessaires depuis Angular
 import { Injectable } from '@angular/core'; // Importation du décorateur Injectable pour permettre l'injection de dépendances
 import { HttpClient } from '@angular/common/http'; // Importation de HttpClient pour effectuer des requêtes HTTP
 import { Observable } from 'rxjs'; // Importation de Observable pour la gestion des flux de données asynchrones
