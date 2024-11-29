@@ -1,47 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router'; // Importations pour la gestion de la navigation
-import { filter } from 'rxjs/operators'; // Importation de l'opérateur filter pour RxJS
-import { CommonModule } from '@angular/common'; // Module commun pour les directives Angular de base
-import { RouterModule } from '@angular/router'; // Module pour les fonctionnalités de routage
-import { ProjetsService } from './projets.service'; // Importation du service pour récupérer les projets
+import { Router, NavigationEnd } from '@angular/router'; 
+import { filter } from 'rxjs/operators'; 
+import { CommonModule } from '@angular/common'; 
+import { RouterModule } from '@angular/router'; 
+import { ProjetsService } from './projets.service'; // Assurez-vous d'importer votre service de projets
 
 @Component({
-  selector: 'app-header', // Sélecteur pour utiliser ce composant dans les templates
-  standalone: true, // Composant autonome, ne dépend pas d'un module NgModule
-  templateUrl: './header.component.html', // Template HTML associé à ce composant
-  styleUrls: ['./header.component.scss'], // Styles SCSS associés à ce composant
-  imports: [CommonModule, RouterModule] // Modules nécessaires pour le composant
+  selector: 'app-header', 
+  standalone: true, 
+  templateUrl: './header.component.html', 
+  styleUrls: ['./header.component.scss'], 
+  imports: [CommonModule, RouterModule] 
 })
 export class HeaderComponent implements OnInit {
-  // Liste des projets, initialisée vide
-  projects: any[] = [];
-
-  // Variable pour stocker la route actuelle
+  projects: any[] = []; // Liste des projets avec leurs noms et IDs
   currentRoute: string = '';
 
   constructor(private router: Router, private projetsService: ProjetsService) {}
 
   ngOnInit(): void {
-    // Abonnez-vous aux événements de navigation pour mettre à jour la route actuelle
+    // Abonnez-vous aux événements de navigation
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd) // Filtre pour ne traiter que les événements de fin de navigation
+      filter(event => event instanceof NavigationEnd) 
     ).subscribe(() => {
-      this.currentRoute = this.router.url; // Met à jour la route actuelle
+      this.currentRoute = this.router.url; 
     });
 
-    // Récupère les projets depuis l'API et met à jour la liste des projets
-    this.projetsService.getProjets().subscribe((data) => {
-      this.projects = data; // Met à jour la variable projects avec les données des projets
+    // Récupération des projets depuis l'API
+    this.projetsService.getProjets().subscribe(data => {
+      this.projects = data; // Assurez-vous que la réponse contient les noms des projets
     });
   }
 
   scrollToSection(sectionId: string) {
-    // Méthode pour faire défiler la page jusqu'à une section spécifique
-    // Assure que le défilement ne se fait que si vous êtes sur la page d'accueil
     if (this.currentRoute === '/accueil') {
-      const element = document.getElementById(sectionId); // Récupère l'élément avec l'ID spécifié
+      const element = document.getElementById(sectionId);
       if (element) {
-        // Fait défiler l'élément en douceur dans la vue
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
