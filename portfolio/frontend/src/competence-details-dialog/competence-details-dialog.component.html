@@ -27,6 +27,9 @@
     <div class="additional-info">
       <h3>Informations Supplémentaires</h3>
       <ul>
+        <li *ngIf="competence.niveau_maitrise">
+          <span class="font-weight-bold">Niveau de Maîtrise:</span> {{ competence.niveau_maitrise }}
+        </li>
         <li *ngIf="competence.marge_progression">
           <span class="font-weight-bold">Marge de Progression:</span> {{ competence.marge_progression }}
         </li>
