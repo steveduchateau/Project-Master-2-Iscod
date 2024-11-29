@@ -55,6 +55,8 @@
     </div>
   </div>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
-  <button mat-button (click)="onClose()">Fermer</button>
+  <!-- Modifier le click pour appeler la méthode closeDialog() -->
+  <button mat-button (click)="closeDialog()">Fermer</button>
 </mat-dialog-actions>
