@@ -37,8 +37,9 @@
           <li>
             <a [routerLink]="['/']" class="dropdown-item" (click)="scrollToSection('projects')">Tous les Projets</a>
           </li>
-          <li *ngFor="let projectId of projects">
-            <a [routerLink]="['/projets', projectId]" class="dropdown-item">Projet {{ projectId }}</a>
+          <!-- Affichage des projets récupérés depuis l'API -->
+          <li *ngFor="let project of projects">
+            <a [routerLink]="['/projets', project.id]" class="dropdown-item">{{ project.name }}</a>
           </li>
         </ul>
       </li>
