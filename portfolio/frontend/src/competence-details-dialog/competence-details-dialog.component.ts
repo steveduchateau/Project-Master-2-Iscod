@@ -29,19 +29,22 @@ export class CompetenceDetailsDialogComponent implements OnInit {
    * Méthode d'initialisation du composant.
    */
   ngOnInit(): void {
-    const competenceId = this.route.snapshot.paramMap.get('id'); // Récupère l'ID de la compétence depuis l'URL
-    if (competenceId) {
-      this.loadCompetence(competenceId); // Charge les données de la compétence
+    // Récupère l'ID de la compétence et le type (humaines ou techniques) depuis l'URL
+    const competenceType = this.route.snapshot.paramMap.get('type'); // 'humaines' ou 'techniques'
+    const competenceId = this.route.snapshot.paramMap.get('id'); // L'ID de la compétence
+    if (competenceType && competenceId) {
+      this.loadCompetence(competenceType, competenceId); // Charge les données de la compétence
     }
   }
 
   /**
    * Charge les données de la compétence via une API.
+   * @param type Type de compétence ('humaines', 'techniques', etc.).
    * @param id ID de la compétence à récupérer.
    */
-  loadCompetence(id: string): void {
-    // Utilisez l'URL correcte
-    const url = `https://project-master-2-iscod.onrender.com/api/competences/${id}`;
+  loadCompetence(type: string, id: string): void {
+    // Utilisez l'URL correcte pour l'API avec le type et l'ID
+    const url = `https://project-master-2-iscod.onrender.com/api/competences/${type}/${id}`;
 
     this.http.get(url).subscribe({
       next: (data: any) => {
