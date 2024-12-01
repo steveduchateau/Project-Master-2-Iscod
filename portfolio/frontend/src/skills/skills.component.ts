@@ -6,8 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 // Importation du composant de dialogue pour afficher les détails d'une compétence
-import { CompetenceDetailsDialogComponent } from '../competence-details-dialog/competence-details-dialog.component';
 import { CompetencesService } from '../services/competences.service';
+import { CompetenceDetailsComponent } from '../competence-details/competence-details.component';
 
 
 
@@ -62,7 +62,7 @@ export class SkillsComponent implements OnInit {
   // Méthode pour ouvrir le dialogue des détails d'une compétence
   openDetailsDialog(competence: any): void {
     // Ouverture du dialogue en passant les données de la compétence
-    this.dialog.open(CompetenceDetailsDialogComponent, {
+    this.dialog.open(CompetenceDetailsComponent, {
       width: '400px', // Largeur du dialogue
       data: competence // Données de la compétence à afficher dans le dialogue
     });

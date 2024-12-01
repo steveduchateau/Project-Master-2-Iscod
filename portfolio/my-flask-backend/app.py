@@ -115,6 +115,39 @@ def get_competences_humaines():
     except Exception as e:
         return jsonify({'error': f'Erreur lors de la récupération des compétences humaines : {str(e)}'}), 500
 
+@app.route('/api/competences/humaines/<int:id>', methods=['GET'])
+def get_competence_humaine_by_id(id):
+    try:
+        cursor = mysql.connection.cursor()  # Création d'un curseur pour exécuter des requêtes SQL
+        cursor.execute('SELECT * FROM competences_humaines WHERE id = %s', (id,))  # Exécution de la requête avec un paramètre
+        row = cursor.fetchone()  # Récupération du résultat
+        cursor.close()  # Fermeture du curseur
+        
+        if row:
+            competence = {
+                'id': row[0],
+                'nom': row[1],
+                'type': row[2],
+                'niveau': row[3],
+                'description': row[4],
+                'utilisation': row[5],
+                'niveau_maitrise': row[6],
+                'marge_progression': row[7],
+                'importance_profil': row[8],
+                'vitesse_acquisition': row[9],
+                'conseils_experience': row[10],
+                'objectif_moyen_terme': row[11],
+                'formations_en_cours': row[12],
+                'anecdotes': row[13],
+                'cas_utilisation': row[14],
+                'contexte_professionnel': row[15]
+            }
+            return jsonify(competence), 200  # Réponse contenant la compétence humaine spécifique
+        else:
+            return jsonify({'error': 'Compétence humaine non trouvée.'}), 404  # Compétence non trouvée
+    except Exception as e:
+        return jsonify({'error': f'Erreur lors de la récupération de la compétence humaine : {str(e)}'}), 500
+
 @app.route('/api/projets', methods=['GET'])
 def get_projets():
     try:
@@ -134,47 +167,14 @@ def get_projets():
                 'enjeux': row[5] if row[5] is not None else '',
                 'risques': row[6] if row[6] is not None else '',
                 'etapes': row[7] if row[7] is not None else '',
-                'acteurs': row[8] if row[8] is not None else '',
-                'resultats': row[9] if row[9] is not None else '',
-                'lendemains': row[10] if row[10] is not None else '',
-                'regardCritique': row[11] if row[11] is not None else '',
-                'competences': row[12] if row[12] is not None else ''
+                'technologies': row[8] if row[8] is not None else '',
+                'bilan': row[9] if row[9] is not None else ''
             }
             projets.append(projet)
-
+        
         return jsonify(projets), 200  # Réponse contenant la liste des projets
     except Exception as e:
         return jsonify({'error': f'Erreur lors de la récupération des projets : {str(e)}'}), 500
 
-@app.route('/api/projets/<int:id>', methods=['GET'])
-def get_projet_by_id(id):
-    try:
-        cursor = mysql.connection.cursor()  # Création d'un curseur pour exécuter des requêtes SQL
-        cursor.execute('SELECT * FROM projets WHERE id = %s', (id,))  # Exécution de la requête avec un paramètre
-        row = cursor.fetchone()  # Récupération du résultat
-        cursor.close()  # Fermeture du curseur
-        
-        if row:
-            projet = {
-                'id': row[0],
-                'nom': row[1],
-                'contexte': row[2],
-                'description': row[3],
-                'objectifs': row[4],
-                'enjeux': row[5],
-                'risques': row[6],
-                'etapes': row[7],
-                'acteurs': row[8],
-                'resultats': row[9],
-                'lendemains': row[10],
-                'regardCritique': row[11],
-                'competences': row[12]
-            }
-            return jsonify(projet), 200  # Réponse contenant le projet recherché
-        else:
-            return jsonify({'error': 'Projet non trouvé.'}), 404  # Projet non trouvé
-    except Exception as e:
-        return jsonify({'error': f'Erreur lors de la récupération du projet : {str(e)}'}), 500
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)  # Exécution de l'application Flask
+    app.run(debug=True, host='0.0.0.0', port=5001)
