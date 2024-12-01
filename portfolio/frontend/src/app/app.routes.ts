@@ -6,16 +6,16 @@ import { ProjetsDetailsComponent } from '../projets-details/projets-details.comp
 import { ProjetsComponent } from '../projets/projets.component';
 import { QuisuisjeComponent } from '../quisuisje/quisuisje.component';
 import { SkillsComponent } from '../skills/skills.component';
-import { CompetenceDetailsDialogComponent } from '../competence-details-dialog/competence-details-dialog.component'; // Import du composant des détails de compétence
+import { CompetenceDetailsDialogComponent } from '../competence-details-dialog/competence-details-dialog.component'; // Correct import du composant des détails de compétence
 
 export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'quisuisje', component: QuisuisjeComponent },
   { path: 'experience', component: ExperienceComponent },
   { path: 'skills', component: SkillsComponent },
-  { path: 'competence-details/:id', component: CompetenceDetailsDialogComponent }, // Route modifiée pour afficher les détails d'une compétence par ID
+  { path: 'competence-details/:type/:id', component: CompetenceDetailsDialogComponent }, // Nouvelle route pour afficher les détails d'une compétence par type et ID
   { path: 'projets', component: ProjetsComponent },
   { path: 'projets/:id', component: ProjetsDetailsComponent }, // Route pour les détails d'un projet
   { path: 'contact', component: ContactComponent },
-  { path: '', redirectTo: '/accueil', pathMatch: 'full' } // Redirection par défaut vers l'accueil
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' }
 ];
