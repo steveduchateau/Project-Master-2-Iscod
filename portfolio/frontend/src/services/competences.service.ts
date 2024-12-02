@@ -1,54 +1,62 @@
-// Importation des modules nécessaires depuis Angular
-import { Injectable } from '@angular/core'; // Importation de 'Injectable' pour définir un service injectable
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'; // Importation de 'HttpClient' et 'HttpErrorResponse' pour gérer les requêtes HTTP et les erreurs
-import { Observable, throwError } from 'rxjs'; // Importation de 'Observable' et 'throwError' pour gérer les flux de données asynchrones et les erreurs
-import { catchError } from 'rxjs/operators'; // Importation de 'catchError' pour gérer les erreurs dans les flux de données
+import { Injectable } from '@angular/core'; // Définir un service injectable
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'; // Gérer les requêtes HTTP et les erreurs
+import { Observable, throwError } from 'rxjs'; // Gérer les flux de données et les erreurs
+import { catchError } from 'rxjs/operators'; // Gérer les erreurs dans les flux
 
-// Définition de l'interface pour le modèle de compétence
+// Interface pour définir le modèle de compétence
 export interface Competence {
+  id?: number; // Ajout de l'ID (optionnel)
   nom: string;
   niveau: string;
   description: string;
+  lien_Git_Hub?: string; // Champ optionnel pour les liens GitHub
 }
 
-// Déclaration du service en tant que fournisseur injectable dans toute l'application
+// Service injectable
 @Injectable({
-  providedIn: 'root' // Spécifie que le service sera disponible dans toute l'application
+  providedIn: 'root',
 })
-// Définition de la classe du service
 export class CompetencesService {
-  // URL de l'API pour accéder aux données des compétences techniques et humaines
+  // URLs des API
   private apiUrlTechniques = 'https://project-master-2-iscod.onrender.com/api/competences/techniques';
   private apiUrlHumaines = 'https://project-master-2-iscod.onrender.com/api/competences/humaines';
+  private apiUrlCompetenceById = 'https://project-master-2-iscod.onrender.com/api/competences'; // Base pour récupérer par ID
 
-  // Constructeur du service, injecte le client HTTP pour effectuer des requêtes
   constructor(private http: HttpClient) {}
 
-  // Méthode pour récupérer les compétences techniques depuis l'API
+  // Récupérer les compétences techniques
   getCompetencesTechniques(): Observable<Competence[]> {
     return this.http.get<Competence[]>(this.apiUrlTechniques).pipe(
-      catchError(this.handleError) // Gestion des erreurs
+      catchError(this.handleError)
     );
   }
 
-  // Méthode pour récupérer les compétences humaines depuis l'API
+  // Récupérer les compétences humaines
   getCompetencesHumaines(): Observable<Competence[]> {
     return this.http.get<Competence[]>(this.apiUrlHumaines).pipe(
-      catchError(this.handleError) // Gestion des erreurs
+      catchError(this.handleError)
     );
   }
 
-  // Méthode générique pour récupérer les compétences en fonction du type
+  // Récupérer les compétences en fonction du type (techniques ou humaines)
   getCompetences(type: 'techniques' | 'humaines'): Observable<Competence[]> {
     const url = type === 'techniques' ? this.apiUrlTechniques : this.apiUrlHumaines;
     return this.http.get<Competence[]>(url).pipe(
-      catchError(this.handleError) // Gestion des erreurs
+      catchError(this.handleError)
     );
   }
 
-  // Méthode pour gérer les erreurs
+  // **Nouvelle méthode** : Récupérer une compétence par ID
+  getCompetenceById(id: number): Observable<Competence> {
+    const url = `${this.apiUrlCompetenceById}/${id}`; // Construire l'URL avec l'ID
+    return this.http.get<Competence>(url).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // Gestion des erreurs
   private handleError(error: HttpErrorResponse) {
-    console.error('Une erreur est survenue:', error.message); // Affichage de l'erreur dans la console
+    console.error('Une erreur est survenue:', error.message);
     return throwError(() => new Error('Erreur lors de la récupération des données.'));
   }
 }
