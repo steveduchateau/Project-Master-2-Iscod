@@ -1,37 +1,20 @@
-<!-- competence-details-dialog.component.html -->
-<!-- Affichage des détails d'une compétence lorsque la variable 'competence' est définie -->
+<!-- Page unique pour les détails d'une compétence -->
 <div *ngIf="competence" class="competence-details">
-
   <!-- Titre de la compétence -->
   <h1 class="competence-title">{{ competence.nom }}</h1>
 
-  <!-- Section contenant les détails de la compétence -->
+  <!-- Description détaillée -->
   <div class="competence-description">
-    <!-- Contexte de la compétence -->
-    <p *ngIf="competence.contexte"><strong>Contexte:</strong> {{ competence.contexte }}</p>
-
-    <!-- Description de la compétence -->
-    <p *ngIf="competence.description"><strong>Description:</strong> {{ competence.description }}</p>
-
-    <!-- Objectifs de la compétence -->
-    <p *ngIf="competence.objectifs"><strong>Objectifs:</strong> {{ competence.objectifs }}</p>
-
-    <!-- Enjeux de la compétence -->
-    <p *ngIf="competence.enjeux"><strong>Enjeux:</strong> {{ competence.enjeux }}</p>
-
-    <!-- Risques associés à la compétence -->
-    <p *ngIf="competence.risques"><strong>Risques:</strong> {{ competence.risques }}</p>
-
-    <!-- Étapes liées à la compétence -->
-    <p *ngIf="competence.etapes"><strong>Étapes:</strong> {{ competence.etapes }}</p>
-
-    <!-- Compétences développées pendant la compétence -->
-    <p *ngIf="competence.competences"><strong>Compétences développées:</strong> {{ competence.competences }}</p>
-
-    <!-- Regard critique sur la compétence -->
-    <p *ngIf="competence.regardCritique"><strong>Regard Critique:</strong> {{ competence.regardCritique }}</p>
+    <p *ngIf="competence.contexte"><strong>Contexte :</strong> {{ competence.contexte }}</p>
+    <p *ngIf="competence.description"><strong>Description :</strong> {{ competence.description }}</p>
+    <p *ngIf="competence.objectifs"><strong>Objectifs :</strong> {{ competence.objectifs }}</p>
+    <p *ngIf="competence.enjeux"><strong>Enjeux :</strong> {{ competence.enjeux }}</p>
+    <p *ngIf="competence.risques"><strong>Risques :</strong> {{ competence.risques }}</p>
+    <p *ngIf="competence.etapes"><strong>Étapes :</strong> {{ competence.etapes }}</p>
+    <p *ngIf="competence.competences"><strong>Compétences développées :</strong> {{ competence.competences }}</p>
+    <p *ngIf="competence.regardCritique"><strong>Regard Critique :</strong> {{ competence.regardCritique }}</p>
   </div>
 
-  <!-- Bouton pour revenir à la vue précédente -->
+  <!-- Bouton pour revenir à la page précédente -->
   <button class="back-button" (click)="goBack()">Retour</button>
 </div>
