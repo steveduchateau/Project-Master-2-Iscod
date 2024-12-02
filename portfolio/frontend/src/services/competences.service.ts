@@ -20,43 +20,45 @@ export class CompetencesService {
   // URLs des API
   private apiUrlTechniques = 'https://project-master-2-iscod.onrender.com/api/competences/techniques';
   private apiUrlHumaines = 'https://project-master-2-iscod.onrender.com/api/competences/humaines';
-  private apiUrlCompetenceById = 'https://project-master-2-iscod.onrender.com/api/competences'; // Base pour récupérer par ID
+  private apiUrlCompetenceById = 'https://project-master-2-iscod.onrender.com/api/competences/humaines'; // Base pour récupérer par ID des compétences humaines
 
   constructor(private http: HttpClient) {}
 
-  // Récupérer les compétences techniques
+  /**
+   * Récupérer les compétences techniques
+   */
   getCompetencesTechniques(): Observable<Competence[]> {
     return this.http.get<Competence[]>(this.apiUrlTechniques).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError) // Gestion des erreurs
     );
   }
 
-  // Récupérer les compétences humaines
+  /**
+   * Récupérer les compétences humaines
+   */
   getCompetencesHumaines(): Observable<Competence[]> {
     return this.http.get<Competence[]>(this.apiUrlHumaines).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError) // Gestion des erreurs
     );
   }
 
-  // Récupérer les compétences en fonction du type (techniques ou humaines)
-  getCompetences(type: 'techniques' | 'humaines'): Observable<Competence[]> {
-    const url = type === 'techniques' ? this.apiUrlTechniques : this.apiUrlHumaines;
-    return this.http.get<Competence[]>(url).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  // **Nouvelle méthode** : Récupérer une compétence par ID
+  /**
+   * Récupérer une compétence humaine par ID
+   * @param id L'identifiant de la compétence
+   */
   getCompetenceById(id: number): Observable<Competence> {
     const url = `${this.apiUrlCompetenceById}/${id}`; // Construire l'URL avec l'ID
     return this.http.get<Competence>(url).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError) // Gestion des erreurs
     );
   }
 
-  // Gestion des erreurs
+  /**
+   * Gestion centralisée des erreurs
+   * @param error Objet d'erreur HTTP
+   */
   private handleError(error: HttpErrorResponse) {
-    console.error('Une erreur est survenue:', error.message);
-    return throwError(() => new Error('Erreur lors de la récupération des données.'));
+    console.error('Une erreur est survenue:', error.message); // Log d'erreur
+    return throwError(() => new Error('Erreur lors de la récupération des données.')); // Retourner un flux d'erreur
   }
 }
