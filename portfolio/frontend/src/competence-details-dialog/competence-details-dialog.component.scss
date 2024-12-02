@@ -1,68 +1,55 @@
-/* Styles pour le conteneur principal des détails de la compétence */
+/* Conteneur principal */
 .competence-details {
-  padding: 40px;
-  max-width: 900px;
+  padding: 30px;
+  max-width: 800px;
   margin: 40px auto;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: 'Arial', sans-serif;
 }
 
-/* Styles pour le titre de la compétence */
+/* Titre de la compétence */
 .competence-title {
-  font-size: 36px;
+  font-size: 32px;
+  font-weight: bold;
   color: #113e7e;
   margin-bottom: 20px;
+  border-bottom: 3px solid #113e7e;
+  padding-bottom: 10px;
   text-align: center;
-  padding: 20px;
-  border-bottom: 4px solid #113e7e;
-  background-color: #f0f8ff;
 }
 
-/* Styles pour la description de la compétence */
+/* Description */
 .competence-description {
-  line-height: 1.8;
-  width: 100%;
-  padding: 0 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* Styles pour les paragraphes dans la description */
-.competence-description p {
-  margin-bottom: 15px;
-  font-size: 16px;
+  margin-top: 20px;
+  text-align: left;
+  line-height: 1.6;
   color: #333;
 }
 
-/* Styles pour les éléments forts à l'intérieur de la description */
+.competence-description p {
+  margin-bottom: 15px;
+}
+
 .competence-description strong {
   color: #113e7e;
 }
 
-/* Styles pour le bouton de retour */
+/* Bouton retour */
 .back-button {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  padding: 12px 24px;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
   background-color: #113e7e;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
 
   &:hover {
     background-color: #0b2d5b;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 }
