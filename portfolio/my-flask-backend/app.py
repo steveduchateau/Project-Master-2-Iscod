@@ -169,6 +169,8 @@ def get_projets():
                 'etapes': row[7] if row[7] is not None else '',
                 'technologies': row[8] if row[8] is not None else '',
                 'resultats': row[9] if row[9] is not None else '',
+                'regardCritique': row[11] is not None else '',
+                'competences': row[12] is not None else '',
             }
             projets.append(projet)
         
@@ -196,6 +198,8 @@ def get_projet_by_id(id):
                 'etapes': row[7] if row[7] is not None else '',
                 'technologies': row[8] if row[8] is not None else '',
                 'resultats': row[9] if row[9] is not None else '',
+                'regardCritique': row[11] is not None else '',
+                'competences': row[12] is not None else '',
             }
             return jsonify(projet), 200  # Réponse contenant le projet spécifique
         else:
