@@ -6,16 +6,23 @@ import { ProjetsDetailsComponent } from '../projets-details/projets-details.comp
 import { ProjetsComponent } from '../projets/projets.component';
 import { QuisuisjeComponent } from '../quisuisje/quisuisje.component';
 import { SkillsComponent } from '../skills/skills.component';
-import { CompetenceDetailsDialogComponent } from '../competence-details-dialog/competence-details-dialog.component'; // Import du composant de détails de compétence mis à jour
+import { CompetenceDetailsDialogComponent } from '../competence-details-dialog/competence-details-dialog.component'; // Composant pour afficher les détails d'une compétence
 
 export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'quisuisje', component: QuisuisjeComponent },
   { path: 'experience', component: ExperienceComponent },
   { path: 'skills', component: SkillsComponent },
-  { path: 'competence-details/:type/:id', component: CompetenceDetailsDialogComponent }, // Utilisation du composant mis à jour pour afficher les détails d'une compétence
+  { 
+    path: 'competence-details/:type/:id', 
+    component: CompetenceDetailsDialogComponent 
+  }, // Route pour les détails d'une compétence technique ou humaine
   { path: 'projets', component: ProjetsComponent },
-  { path: 'projets/:id', component: ProjetsDetailsComponent }, // Route pour les détails d'un projet
+  { 
+    path: 'projets/:id', 
+    component: ProjetsDetailsComponent 
+  }, // Route pour les détails d'un projet spécifique
   { path: 'contact', component: ContactComponent },
-  { path: '', redirectTo: '/accueil', pathMatch: 'full' }
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' }, // Redirection par défaut vers l'accueil
+  { path: '**', redirectTo: '/accueil', pathMatch: 'full' } // Gestion des routes non définies
 ];
