@@ -167,7 +167,8 @@ def get_projets():
                 'enjeux': row[5] if row[5] is not None else '',
                 'risques': row[6] if row[6] is not None else '',
                 'etapes': row[7] if row[7] is not None else '',
-                'outils_utilises': row[8] if row[8] is not None else ''
+                'technologies': row[8] if row[8] is not None else '',
+                'resultats': row[9] if row[9] is not None else '',
             }
             projets.append(projet)
         
@@ -185,15 +186,16 @@ def get_projet_by_id(id):
         
         if row:
             projet = {
-                'id': row[0],
-                'nom': row[1],
-                'contexte': row[2],
-                'description': row[3],
-                'objectifs': row[4],
-                'enjeux': row[5],
-                'risques': row[6],
-                'etapes': row[7],
-                'outils_utilises': row[8]
+                'id': int(row[0]) if isinstance(row[0], int) else 0,  # Validation que 'id' est un entier
+                'nom': row[1] if row[1] is not None else '',
+                'contexte': row[2] if row[2] is not None else '',
+                'description': row[3] if row[3] is not None else '',
+                'objectifs': row[4] if row[4] is not None else '',
+                'enjeux': row[5] if row[5] is not None else '',
+                'risques': row[6] if row[6] is not None else '',
+                'etapes': row[7] if row[7] is not None else '',
+                'technologies': row[8] if row[8] is not None else '',
+                'resultats': row[9] if row[9] is not None else '',
             }
             return jsonify(projet), 200  # Réponse contenant le projet spécifique
         else:
@@ -202,4 +204,4 @@ def get_projet_by_id(id):
         return jsonify({'error': f'Erreur lors de la récupération du projet : {str(e)}'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)  # Lancement de l'application Flask
+    app.run(debug=True, host='0.0.0.0', port=5001)
