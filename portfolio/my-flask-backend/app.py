@@ -13,9 +13,6 @@ app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', 'sJZJplXzZTroxulYDRHP
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'railway')  # nom de la base de données
 app.config['MYSQL_PORT'] = int(os.getenv('MYSQL_PORT', 43700))  # port de la base de données
 
-# Définir l'encodage par défaut à UTF-8 pour Flask
-app.config['JSON_AS_ASCII'] = False  # Assurer l'encodage UTF-8 dans les réponses JSON
-
 mysql = MySQL(app)  # Création de l'objet MySQL pour interagir avec la base de données
 
 @app.route('/', methods=['GET'])
@@ -81,7 +78,6 @@ def get_competences_techniques():
             } for row in rows
         ]
         
-        # Retourner la réponse JSON avec encoding UTF-8 (car ensure_ascii=False)
         return jsonify(competences), 200  # Réponse contenant la liste des compétences techniques
     except Exception as e:
         return jsonify({'error': f'Erreur lors de la récupération des compétences techniques : {str(e)}'}), 500
@@ -164,18 +160,46 @@ def get_projets():
         for row in rows:
             projet = {
                 'id': int(row[0]) if isinstance(row[0], int) else 0,  # Validation que 'id' est un entier
-                'nom': row[1] if row[1] is not None else '',  # Si la valeur est None, la remplacer par une chaîne vide
-                'description': row[2] if row[2] is not None else '',
-                'technologies': row[3] if row[3] is not None else '',
-                'date_debut': row[4] if row[4] is not None else '',
-                'date_fin': row[5] if row[5] is not None else '',
-                'url': row[6] if row[6] is not None else ''
+                'nom': row[1] if row[1] is not None else '',  # Si la valeur est None, on retourne une chaîne vide
+                'contexte': row[2] if row[2] is not None else '',
+                'description': row[3] if row[3] is not None else '',
+                'objectifs': row[4] if row[4] is not None else '',
+                'enjeux': row[5] if row[5] is not None else '',
+                'risques': row[6] if row[6] is not None else '',
+                'etapes': row[7] if row[7] is not None else '',
+                'outils_utilises': row[8] if row[8] is not None else ''
             }
-            projets.append(projet)  # Ajout du projet à la liste
+            projets.append(projet)
         
         return jsonify(projets), 200  # Réponse contenant la liste des projets
     except Exception as e:
         return jsonify({'error': f'Erreur lors de la récupération des projets : {str(e)}'}), 500
 
+@app.route('/api/projets/<int:id>', methods=['GET'])
+def get_projet_by_id(id):
+    try:
+        cursor = mysql.connection.cursor()  # Création d'un curseur pour exécuter des requêtes SQL
+        cursor.execute('SELECT * FROM projets WHERE id = %s', (id,))  # Exécution de la requête avec un paramètre
+        row = cursor.fetchone()  # Récupération du résultat
+        cursor.close()  # Fermeture du curseur
+        
+        if row:
+            projet = {
+                'id': row[0],
+                'nom': row[1],
+                'contexte': row[2],
+                'description': row[3],
+                'objectifs': row[4],
+                'enjeux': row[5],
+                'risques': row[6],
+                'etapes': row[7],
+                'outils_utilises': row[8]
+            }
+            return jsonify(projet), 200  # Réponse contenant le projet spécifique
+        else:
+            return jsonify({'error': 'Projet non trouvé.'}), 404  # Projet non trouvé
+    except Exception as e:
+        return jsonify({'error': f'Erreur lors de la récupération du projet : {str(e)}'}), 500
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)  # Démarrer l'application Flask sur le port 5001
+    app.run(debug=True, host='0.0.0.0', port=5001)  # Lancement de l'application Flask
