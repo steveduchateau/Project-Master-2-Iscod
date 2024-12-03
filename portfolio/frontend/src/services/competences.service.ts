@@ -46,6 +46,14 @@ export class CompetencesService {
     );
   }
 
+  // Méthode pour récupérer une compétence par ID
+  getCompetenceById(id: number): Observable<Competence> {
+    const url = `https://project-master-2-iscod.onrender.com/api/competences/${id}`;
+    return this.http.get<Competence>(url).pipe(
+      catchError(this.handleError) // Gestion des erreurs
+    );
+  }
+
   // Méthode pour gérer les erreurs
   private handleError(error: HttpErrorResponse) {
     console.error('Une erreur est survenue:', error.message); // Affichage de l'erreur dans la console
