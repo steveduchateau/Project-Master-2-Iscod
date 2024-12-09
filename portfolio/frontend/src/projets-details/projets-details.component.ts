@@ -1,66 +1,97 @@
-import { Component, OnInit } from '@angular/core'; // Importation des classes Component et OnInit pour définir et initialiser le composant Angular
-import { ActivatedRoute } from '@angular/router'; // Importation de ActivatedRoute pour accéder aux paramètres de la route active
-import { ProjetsService } from '../services/projets.service'; // Importation du service ProjetsService pour obtenir les données du projet
-import { Location } from '@angular/common'; // Importation de Location pour manipuler l'historique de navigation
-import { CommonModule } from '@angular/common'; // Importation de CommonModule pour utiliser des directives Angular communes
-import { switchMap, catchError } from 'rxjs/operators'; // Importation des opérateurs RxJS pour transformer les flux de données et gérer les erreurs
-import { throwError } from 'rxjs'; // Importation de throwError pour créer des erreurs dans les observables
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProjetsService } from '../services/projets.service';
+import { Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { switchMap, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
-  selector: 'app-projets-details',  // Déclaration du sélecteur du composant pour l'utiliser dans les templates HTML
-  standalone: true,  // Indique que le composant est autonome, ce qui signifie qu'il n'a pas besoin d'être inclus dans un module Angular spécifique
-  templateUrl: './projets-details.component.html',  // Chemin vers le fichier de template HTML associé au composant
-  styleUrls: ['./projets-details.component.scss'],  // Chemin vers le fichier de styles SCSS associé au composant
-  imports: [CommonModule],  // Modules Angular nécessaires pour ce composant, ici le CommonModule pour les directives comme *ngIf
+  selector: 'app-projets-details',
+  standalone: true,
+  templateUrl: './projets-details.component.html',
+  styleUrls: ['./projets-details.component.scss'],
+  imports: [CommonModule, RouterModule],
 })
 export class ProjetsDetailsComponent implements OnInit {
-  projet: any;  // Variable pour stocker les détails du projet récupérés depuis le service
+  projet: any;
+  isCompetencesArray: boolean = false;
+  isCompetencesString: boolean = false;
+
+  // Mapping des compétences avec leurs URLs fixes
+  competenceUrls: { [key: string]: string } = {
+    // Compétences techniques
+    Python: '/competences/techniques/1',
+    'Power BI': '/competences/techniques/2',
+    SQL: '/competences/techniques/3',
+    'Office 365': '/competences/techniques/4',
+
+    // Compétences humaines
+    Communication: '/competences/humaines/101',
+    'Interprétation des résultats': '/competences/humaines/102',
+    'Gestion du temps': '/competences/humaines/103',
+    "Esprit d'équipe": '/competences/humaines/104',
+  };
 
   constructor(
-    private route: ActivatedRoute,  // Service pour accéder aux paramètres de la route active, tel que l'ID du projet dans l'URL
-    private projetsService: ProjetsService,  // Service pour obtenir les données du projet à partir d'une API ou d'une autre source
-    private location: Location  // Service pour manipuler l'historique de navigation, permettant de revenir à la page précédente
+    private route: ActivatedRoute,
+    private projetsService: ProjetsService,
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    // Méthode appelée lors de l'initialisation du composant, utilisée pour récupérer les données du projet
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        // Utilisation de switchMap pour transformer les données du flux de paramètres de la route
-        const id = params.get('id');  // Récupération de l'ID du projet à partir des paramètres de la route
-        if (id) {
-          // Vérification que l'ID est présent
-          return this.projetsService.getProjetById(id);  // Utilisation du service pour récupérer les détails du projet par son ID
-        } else {
-          // Gestion du cas où l'ID est manquant
-          return throwError(() => new Error('ID de projet manquant'));  // Création et propagation d'une erreur si l'ID est absent
-        }
-      }),
-      catchError(err => {
-        // Gestion des erreurs qui surviennent lors de la récupération des données
-        console.error('Erreur lors de la récupération du projet:', err);  // Affichage de l'erreur dans la console pour le débogage
-        return throwError(() => err);  // Propagation de l'erreur pour une gestion ultérieure
-      })
-    ).subscribe({
-      next: (data) => {
-        // Lorsque les données du projet sont reçues
-        this.projet = data;  // Stockage des données du projet dans la variable projet
-        console.log('Projet:', this.projet);  // Affichage des données du projet dans la console pour le débogage
+    this.route.paramMap
+      .pipe(
+        switchMap((params) => {
+          const id = params.get('id');
+          if (id) {
+            return this.projetsService.getProjetById(id);
+          } else {
+            return throwError(() => new Error('ID de projet manquant'));
+          }
+        }),
+        catchError((err) => {
+          console.error('Erreur lors de la récupération du projet:', err);
+          return throwError(() => err);
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          this.projet = data;
+          console.log('Projet:', this.projet);
 
-        // Assurez-vous que le lien GitHub est bien défini
-        if (this.projet && this.projet.lien_Git_Hub) {
-          this.projet.lien_Git_Hub = this.projet.lien_Git_Hub.trim();  // Suppression des espaces superflus autour du lien GitHub
-        }
-      },
-      error: (err) => {
-        // Gestion des erreurs lors de la souscription
-        console.error('Erreur lors de la récupération du projet:', err);  // Affichage de l'erreur dans la console pour le débogage
-      }
-    });
+          // Déterminer si les compétences sont une chaîne ou un tableau
+          if (this.projet && this.projet.competences) {
+            this.isCompetencesArray = Array.isArray(this.projet.competences);
+            this.isCompetencesString = typeof this.projet.competences === 'string';
+          }
+
+          // Nettoyage du lien GitHub si défini
+          if (this.projet && this.projet.lien_Git_Hub) {
+            this.projet.lien_Git_Hub = this.projet.lien_Git_Hub.trim();
+          }
+        },
+        error: (err) => {
+          console.error('Erreur lors de la récupération du projet:', err);
+        },
+      });
   }
 
+  // Fonction pour obtenir l'URL d'une compétence avec une redirection fixe
+  getCompetenceLink(competence: string): string {
+    // Retourner l'URL fixe pour la compétence
+    return this.competenceUrls[competence] || '#'; // URL par défaut si la compétence n'est pas définie
+  }
+
+  // Méthode pour séparer les compétences si elles sont dans une chaîne
+  splitCompetences(competences: string): string[] {
+    return competences.split(',').map((comp) => comp.trim());
+  }
+
+  // Méthode pour revenir à la page précédente
   goBack(): void {
-    // Méthode pour revenir à la page précédente
-    this.location.back();  // Utilisation du service Location pour naviguer vers la page précédente dans l'historique de navigation
+    this.location.back();
   }
 }

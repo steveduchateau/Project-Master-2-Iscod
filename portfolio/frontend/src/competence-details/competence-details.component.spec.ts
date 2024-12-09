@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompetenceDetailsDialogComponent } from './competence-details-dialog.component';
+import { CompetenceDetailsComponent } from './competence-details.component';
 
 describe('CompetenceDetailsDialogComponent', () => {
-  let component: CompetenceDetailsDialogComponent;
-  let fixture: ComponentFixture<CompetenceDetailsDialogComponent>;
+  let component: CompetenceDetailsComponent;
+  let fixture: ComponentFixture<CompetenceDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CompetenceDetailsDialogComponent]
+      imports: [CompetenceDetailsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CompetenceDetailsDialogComponent);
+    fixture = TestBed.createComponent(CompetenceDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
